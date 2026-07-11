@@ -13,6 +13,9 @@
     "test": "node --test tests/data.test.ts tests/game.test.ts tests/session.test.ts tests/storage.test.ts",
     "test:ui": "vitest run",
     "test:render": "node --test tests/rendered-html.test.mjs",
+    "prerender": "node scripts/prerender.mjs",
+    "build:pages": "npm run build && npm run prerender",
+    "preview:pages": "node scripts/preview-pages.mjs",
     "validate": "npm run lint && npm run typecheck && npm run test && npm run test:ui && npm run build && npm run test:render",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },

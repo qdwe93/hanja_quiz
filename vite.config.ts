@@ -43,7 +43,13 @@ export default defineConfig(async () => {
   // Wrangler snapshots its log path while the Cloudflare plugin is imported.
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
+  // GitHub Pages 프로젝트 사이트는 `/<repo>/` 하위 경로에서 서비스되므로
+  // 정적 배포 빌드에서는 PAGES_BASE로 에셋 기준 경로를 지정한다.
+  // 기본값 `/`는 dev와 Cloudflare Worker 빌드에 영향을 주지 않는다.
+  const base = process.env.PAGES_BASE ?? "/";
+
   return {
+    base,
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,

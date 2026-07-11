@@ -1,0 +1,57 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# GITHUB_TOKEN이 Pages에 배포할 수 있도록 권한을 부여한다.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시에 하나의 배포만 진행하고 진행 중이던 실행은 취소하지 않는다.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 소스 가져오기
+        uses: actions/checkout@v4
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: 의존성 설치
+        run: npm ci
+      - name: Pages 설정
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          # GITHUB_TOKEN으로 Pages를 자동 활성화해 수동 설정 없이 배포한다.
+          enablement: true
+      - name: 정적 사이트 빌드
+        # 프로젝트 사이트는 /<repo>/ 하위 경로에서 서비스되므로 base를 맞춘다.
+        env:
+          PAGES_BASE: ${{ steps.pages.outputs.base_path }}/
+        run: npm run build:pages
+      - name: 산출물 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/client
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Pages에 배포
+        id: deployment
+        uses: actions/deploy-pages@v4
