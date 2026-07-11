@@ -2,6 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import {
+  ENDING_AUDIO_URL,
+  GAMEPLAYING_AUDIO_URL,
+  randomRightAudioUrl,
+  randomWrongAudioUrl,
+} from "../lib/audio";
 import { filterByStudySet, getStudySet } from "../lib/game";
 import {
   answerQuizQuestion,
@@ -22,9 +28,11 @@ import {
   createDefaultProgress,
   loadProgress,
   saveProgress,
+  setAudioPreferences,
   setSelectedStudySet,
 } from "../lib/storage";
 import type {
+  AudioPreferences,
   HanjaEntry,
   MatchCard,
   ProgressState,
@@ -42,6 +50,15 @@ type AppScreen =
 
 const MATCH_FEEDBACK_DELAY_MS = 1000;
 const QUIZ_FEEDBACK_DELAY_MS = 1000;
+const WRONG_SOUND_MAX_DURATION_MS = 3000;
+
+function playSilently(audio: HTMLAudioElement, onRejected?: () => void) {
+  try {
+    void audio.play().catch(() => onRejected?.());
+  } catch {
+    onRejected?.();
+  }
+}
 
 interface HanjaAppProps {
   entries: HanjaEntry[];
@@ -58,6 +75,9 @@ export function HanjaApp({ entries }: HanjaAppProps) {
   const [quizSession, setQuizSession] = useState<QuizSession | null>(null);
 
   const timersRef = useRef<number[]>([]);
+  const musicAudioRef = useRef<HTMLAudioElement | null>(null);
+  const effectAudioRef = useRef(new Set<HTMLAudioElement>());
+  const effectTimerRef = useRef<number[]>([]);
   const quizAnswerHandlerRef = useRef<(choice: string) => void>(() => {});
   const previousScreenRef = useRef<AppScreen | null>(null);
   const selectedEntries = useMemo(
@@ -83,6 +103,45 @@ export function HanjaApp({ entries }: HanjaAppProps) {
   }, []);
 
   useEffect(() => {
+    const music = new Audio(GAMEPLAYING_AUDIO_URL);
+    const activeEffects = effectAudioRef.current;
+    music.loop = true;
+    music.volume = 0.3;
+    musicAudioRef.current = music;
+
+    return () => {
+      music.pause();
+      music.currentTime = 0;
+      musicAudioRef.current = null;
+      effectTimerRef.current.forEach((timer) => window.clearTimeout(timer));
+      activeEffects.forEach((audio) => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      effectTimerRef.current = [];
+      activeEffects.clear();
+    };
+  }, []);
+
+  useEffect(() => {
+    const music = musicAudioRef.current;
+    const shouldPlayMusic =
+      (screen === "matching" || screen === "quiz") &&
+      progress.audio.musicEnabled;
+    if (!music) {
+      return;
+    }
+    if (shouldPlayMusic) {
+      music.loop = true;
+      music.volume = 0.3;
+      playSilently(music);
+      return;
+    }
+    music.pause();
+    music.currentTime = 0;
+  }, [screen, progress.audio.musicEnabled]);
+
+  useEffect(() => {
     if (previousScreenRef.current === null) {
       previousScreenRef.current = screen;
       return;
@@ -104,8 +163,92 @@ export function HanjaApp({ entries }: HanjaAppProps) {
     timersRef.current = [];
   }
 
+  function startGameplayMusic() {
+    const music = musicAudioRef.current;
+    if (!music || !progress.audio.musicEnabled) {
+      return;
+    }
+    music.loop = true;
+    music.volume = 0.3;
+    playSilently(music);
+  }
+
+  function stopGameplayMusic() {
+    const music = musicAudioRef.current;
+    if (!music) {
+      return;
+    }
+    music.pause();
+    music.currentTime = 0;
+  }
+
+  function playEffectSound(url: string, maxDurationMs?: number) {
+    if (!progress.audio.effectsEnabled) {
+      return;
+    }
+
+    const audio = new Audio(url);
+    audio.volume = 1;
+    effectAudioRef.current.add(audio);
+    let timeout: number | undefined;
+    const cleanup = () => {
+      effectAudioRef.current.delete(audio);
+      audio.removeEventListener("ended", cleanup);
+      if (timeout !== undefined) {
+        window.clearTimeout(timeout);
+        effectTimerRef.current = effectTimerRef.current.filter(
+          (timer) => timer !== timeout,
+        );
+      }
+    };
+
+    audio.addEventListener("ended", cleanup, { once: true });
+    if (maxDurationMs !== undefined) {
+      timeout = window.setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
+        cleanup();
+      }, maxDurationMs);
+      effectTimerRef.current.push(timeout);
+    }
+    playSilently(audio, cleanup);
+  }
+
+  function stopEffectSounds() {
+    effectTimerRef.current.forEach((timer) => window.clearTimeout(timer));
+    effectTimerRef.current = [];
+    effectAudioRef.current.forEach((audio) => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+    effectAudioRef.current.clear();
+  }
+
+  function updateAudioPreferences(nextAudio: AudioPreferences) {
+    setProgress((current) => {
+      const next = setAudioPreferences(current, nextAudio);
+      saveProgress(next);
+      return next;
+    });
+
+    if (!nextAudio.musicEnabled) {
+      stopGameplayMusic();
+    } else if (screen === "matching" || screen === "quiz") {
+      const music = musicAudioRef.current;
+      if (music) {
+        music.loop = true;
+        music.volume = 0.3;
+        playSilently(music);
+      }
+    }
+    if (!nextAudio.effectsEnabled) {
+      stopEffectSounds();
+    }
+  }
+
   function goHome() {
     clearScheduledTimers();
+    stopGameplayMusic();
     setScreen("home");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -141,6 +284,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
 
   function startMatching() {
     clearScheduledTimers();
+    startGameplayMusic();
     setMatchSession(createMatchSession(entries, { studySet: selectedStudySet }));
     setScreen("matching");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -152,6 +296,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       return;
     }
     clearScheduledTimers();
+    startGameplayMusic();
     setMatchSession(restartMatchSession(matchSession));
     setScreen("matching");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -172,12 +317,20 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       return;
     }
 
+    const matched = isCheckingPairMatched(next);
+    playEffectSound(
+      matched ? randomRightAudioUrl() : randomWrongAudioUrl(),
+      matched ? undefined : WRONG_SOUND_MAX_DURATION_MS,
+    );
+
     schedule(() => {
       const resolved = resolveMatchCheck(next);
       setMatchSession(resolved);
       if (resolved.phase === "complete") {
         const summary = summarizeMatch(resolved);
         recordCompletion("matching", resolved.studySet, summary.score, summary.total);
+        stopGameplayMusic();
+        playEffectSound(ENDING_AUDIO_URL);
         setScreen("matching-result");
       }
     }, MATCH_FEEDBACK_DELAY_MS);
@@ -185,6 +338,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
 
   function startQuiz() {
     clearScheduledTimers();
+    startGameplayMusic();
     let session: QuizSession;
     try {
       session = createQuizSession(entries, { studySet: selectedStudySet, count: 25 });
@@ -210,6 +364,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       return;
     }
     clearScheduledTimers();
+    startGameplayMusic();
     setQuizSession(restartQuizSession(quizSession));
     setScreen("quiz");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -225,6 +380,11 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       return;
     }
     setQuizSession(next);
+    const isCorrect = next.feedback?.correct ?? false;
+    playEffectSound(
+      isCorrect ? randomRightAudioUrl() : randomWrongAudioUrl(),
+      isCorrect ? undefined : WRONG_SOUND_MAX_DURATION_MS,
+    );
 
     schedule(() => {
       const resolved = resolveQuizFeedback(next);
@@ -232,6 +392,8 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       if (resolved.phase === "complete") {
         const summary = summarizeQuiz(resolved);
         recordCompletion("quiz", resolved.studySet, summary.score, summary.total);
+        stopGameplayMusic();
+        playEffectSound(ENDING_AUDIO_URL);
         setScreen("quiz-result");
       }
     }, QUIZ_FEEDBACK_DELAY_MS);
@@ -280,8 +442,32 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       </a>
       <div className="utility-bar">
         <div className="container utility-bar__inner">
-          <p>오늘도 한 글자씩, 차근차근 익혀요.</p>
-          <p className="utility-bar__scope">7급 · 준6급 · 6급 배정한자</p>
+          <div className="utility-bar__message">
+            <p className="utility-bar__greeting">오늘도 한 글자씩, 차근차근 익혀요.</p>
+            <p className="utility-bar__scope">7급 · 준6급 · 6급 배정한자</p>
+          </div>
+          <div className="audio-options" aria-label="소리 재생 설정">
+            <AudioToggle
+              label="노래재생"
+              checked={progress.audio.musicEnabled}
+              onChange={(musicEnabled) =>
+                updateAudioPreferences({
+                  ...progress.audio,
+                  musicEnabled,
+                })
+              }
+            />
+            <AudioToggle
+              label="효과음재생"
+              checked={progress.audio.effectsEnabled}
+              onChange={(effectsEnabled) =>
+                updateAudioPreferences({
+                  ...progress.audio,
+                  effectsEnabled,
+                })
+              }
+            />
+          </div>
         </div>
       </div>
 
@@ -374,6 +560,31 @@ export function HanjaApp({ entries }: HanjaAppProps) {
         </div>
       </footer>
     </div>
+  );
+}
+
+function AudioToggle({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}) {
+  return (
+    <label className="audio-toggle">
+      <span>{label}</span>
+      <input
+        type="checkbox"
+        role="switch"
+        checked={checked}
+        onChange={(event) => onChange(event.target.checked)}
+      />
+      <span className="audio-toggle__track" aria-hidden="true">
+        <span className="audio-toggle__thumb" />
+      </span>
+    </label>
   );
 }
 

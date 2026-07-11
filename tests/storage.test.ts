@@ -8,6 +8,7 @@ import {
   loadProgress,
   parseProgress,
   saveProgress,
+  setAudioPreferences,
   setSelectedStudySet,
 } from "../lib/storage.ts";
 import type { StorageLike } from "../lib/storage";
@@ -99,6 +100,22 @@ test("선택 세트와 진행 상태를 지정된 키로 저장하고 다시 불
   const saved = saveProgress(progress, storage);
   assert.equal(storage.values.has(PROGRESS_STORAGE_KEY), true);
   assert.deepEqual(loadProgress(storage), saved);
+});
+
+test("소리 설정은 기본값을 보완하고 저장 후에도 복원한다", () => {
+  const storage = new MemoryStorage();
+  const progress = setAudioPreferences(createDefaultProgress(), {
+    musicEnabled: false,
+    effectsEnabled: true,
+  });
+
+  assert.deepEqual(parseProgress({ version: 1 }).audio, {
+    musicEnabled: true,
+    effectsEnabled: true,
+  });
+  assert.deepEqual(loadProgress(storage), createDefaultProgress());
+  const saved = saveProgress(progress, storage);
+  assert.deepEqual(loadProgress(storage).audio, saved.audio);
 });
 
 test("localStorage 접근이 예외를 내도 로딩과 저장은 학습 흐름을 중단하지 않는다", () => {

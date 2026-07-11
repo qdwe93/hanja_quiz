@@ -1,4 +1,5 @@
 import type {
+  AudioPreferences,
   ProgressRecord,
   ProgressState,
   StudyMode,
@@ -17,6 +18,10 @@ export function createDefaultProgress(): ProgressState {
   return {
     version: 1,
     selectedStudySet: DEFAULT_STUDY_SET,
+    audio: {
+      musicEnabled: true,
+      effectsEnabled: true,
+    },
     matching: {
       completedGames: 0,
       matchedPairs: 0,
@@ -52,6 +57,7 @@ export function parseProgress(input: unknown): ProgressState {
   const defaults = createDefaultProgress();
   const matching = isObject(candidate.matching) ? candidate.matching : {};
   const quiz = isObject(candidate.quiz) ? candidate.quiz : {};
+  const audio = isObject(candidate.audio) ? candidate.audio : {};
   const totalQuestions = readNonNegativeInteger(
     quiz.totalQuestions,
     defaults.quiz.totalQuestions,
@@ -67,6 +73,13 @@ export function parseProgress(input: unknown): ProgressState {
       studySetFromValue(candidate.selectedStudySet) ??
       legacyGradeToStudySet(candidate.selectedGrade) ??
       defaults.selectedStudySet,
+    audio: {
+      musicEnabled: readBoolean(audio.musicEnabled, defaults.audio.musicEnabled),
+      effectsEnabled: readBoolean(
+        audio.effectsEnabled,
+        defaults.audio.effectsEnabled,
+      ),
+    },
     matching: {
       completedGames: readNonNegativeInteger(
         matching.completedGames,
@@ -225,6 +238,14 @@ function studySetFromValue(value: unknown): StudySetId | null {
     : null;
 }
 
+export function setAudioPreferences(
+  progress: ProgressState,
+  audio: AudioPreferences,
+): ProgressState {
+  const normalized = parseProgress(progress);
+  return { ...normalized, audio };
+}
+
 function legacyGradeToStudySet(value: unknown): StudySetId | null {
   if (value === "7급") return "7급-1";
   if (value === "준6급") return "준6급-1";
@@ -242,4 +263,8 @@ function isNonNegativeInteger(value: unknown): value is number {
 
 function readNonNegativeInteger(value: unknown, fallback: number): number {
   return isNonNegativeInteger(value) ? value : fallback;
+}
+
+function readBoolean(value: unknown, fallback: boolean): boolean {
+  return typeof value === "boolean" ? value : fallback;
 }

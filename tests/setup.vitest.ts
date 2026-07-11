@@ -6,3 +6,13 @@ Object.defineProperty(window, "scrollTo", {
   value: vi.fn(),
   writable: true,
 });
+
+Object.defineProperty(HTMLMediaElement.prototype, "play", {
+  configurable: true,
+  value: vi.fn().mockResolvedValue(undefined),
+});
+
+Object.defineProperty(HTMLMediaElement.prototype, "pause", {
+  configurable: true,
+  value: vi.fn(),
+});

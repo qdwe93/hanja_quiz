@@ -104,12 +104,75 @@ a:focus-visible {
   gap: 16px;
 }
 
+.utility-bar__message,
+.audio-options {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .utility-bar p {
   margin: 0;
 }
 
 .utility-bar__scope {
   color: #d8d8d8;
+}
+
+.audio-options {
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.audio-toggle {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #f4f4f4;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.audio-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.audio-toggle__track {
+  width: 32px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 999px;
+  background: #757575;
+  transition: background 160ms ease;
+}
+
+.audio-toggle__thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  transform: translateX(0);
+  transition: transform 160ms ease;
+}
+
+.audio-toggle input:checked + .audio-toggle__track {
+  background: var(--color-primary-bright);
+}
+
+.audio-toggle input:checked + .audio-toggle__track .audio-toggle__thumb {
+  transform: translateX(14px);
+}
+
+.audio-toggle input:focus-visible + .audio-toggle__track {
+  outline: 3px solid white;
+  outline-offset: 2px;
 }
 
 .site-header {
@@ -1282,6 +1345,19 @@ main {
 }
 
 @media (max-width: 460px) {
+  .utility-bar__greeting {
+    display: none;
+  }
+
+  .utility-bar__inner {
+    justify-content: flex-end;
+  }
+
+  .audio-options {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .brand-copy small,
   .header-actions .text-button {
     display: none;

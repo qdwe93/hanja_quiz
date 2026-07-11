@@ -81,6 +81,11 @@ export interface QuizQuestion {
 
 export type StudyMode = "matching" | "quiz";
 
+export interface AudioPreferences {
+  musicEnabled: boolean;
+  effectsEnabled: boolean;
+}
+
 export interface ProgressRecord {
   id: string;
   mode: StudyMode;
@@ -94,6 +99,7 @@ export interface ProgressRecord {
 export interface ProgressState {
   version: 1;
   selectedStudySet: StudySetId;
+  audio: AudioPreferences;
   matching: {
     completedGames: number;
     matchedPairs: number;

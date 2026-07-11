@@ -65,7 +65,8 @@ components/
   HanjaApp.tsx               # 클라이언트 화면과 세션 오케스트레이션
 data/
   hanja.json                 # 검증된 200자
-lib/
+  lib/
+    audio.ts                   # 빌드 경로 안전 음원 URL·무작위 효과음 선택
   types.ts                   # 데이터·게임·저장 타입
   game.ts                    # 필터, 셔플, 매칭·퀴즈 생성
   session.ts                 # 짝맞추기·퀴즈 세션 상태 전이(순수 함수)
@@ -267,6 +268,10 @@ interface QuizSession {
 interface ProgressState {
   version: 1;
   selectedStudySet: StudySetId;
+  audio: {
+    musicEnabled: boolean;
+    effectsEnabled: boolean;
+  };
   matching: {
     completedGames: number;
     matchedPairs: number;
@@ -288,6 +293,7 @@ interface ProgressState {
 ```
 
 - `recentRecords`는 최신 10회만 보존한다.
+- `audio`는 배경음과 효과음의 켜짐 상태를 보존하며, 이전 저장값에 없으면 둘 다 `true`로 복구한다.
 - 진행 중 게임은 저장하지 않는다. 새로고침하면 홈으로 돌아가되 마지막 학습 세트와 완료 요약은 유지한다.
 - 숫자는 유한한 0 이상의 정수인지, 범위와 모드는 허용된 값인지 읽을 때 검증한다.
 - 각 기록은 `correct <= total`이어야 하며 모드별 누계는 유효한 완료 기록에서만 증가한다. 오답 ID 목록은 현재 결과 화면의 세션 상태로만 유지하고 영속화하지 않는다.
