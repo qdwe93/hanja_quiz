@@ -1,0 +1,31 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 소스 가져오기
+        uses: actions/checkout@v4
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: 의존성 설치
+        run: npm ci
+      - name: 정적 검사
+        run: npm run lint
+      - name: 타입 검사
+        run: npm run typecheck
+      - name: 단위 테스트
+        run: npm run test
+      - name: 프로덕션 빌드
+        run: npm run build
+      - name: 렌더 스모크 테스트
+        run: npm run test:render

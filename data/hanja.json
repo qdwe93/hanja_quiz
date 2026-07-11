@@ -1,0 +1,2820 @@
+[
+  {
+    "id": "g7-001",
+    "hanja": "歌",
+    "eum": [
+      "가"
+    ],
+    "hun": [
+      "노래"
+    ],
+    "eumhun": "노래 가",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "노래 가"
+  },
+  {
+    "id": "g7-002",
+    "hanja": "口",
+    "eum": [
+      "구"
+    ],
+    "hun": [
+      "입"
+    ],
+    "eumhun": "입 구",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "입 구(ː)"
+  },
+  {
+    "id": "g7-003",
+    "hanja": "旗",
+    "eum": [
+      "기"
+    ],
+    "hun": [
+      "기"
+    ],
+    "eumhun": "기 기",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "기 기"
+  },
+  {
+    "id": "g7-004",
+    "hanja": "同",
+    "eum": [
+      "동"
+    ],
+    "hun": [
+      "한가지"
+    ],
+    "eumhun": "한가지 동",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "한가지 동"
+  },
+  {
+    "id": "g7-005",
+    "hanja": "洞",
+    "eum": [
+      "동",
+      "통"
+    ],
+    "hun": [
+      "골",
+      "밝을"
+    ],
+    "eumhun": "골 동",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "골 동ː | 밝을 통ː"
+  },
+  {
+    "id": "g7-006",
+    "hanja": "冬",
+    "eum": [
+      "동"
+    ],
+    "hun": [
+      "겨울"
+    ],
+    "eumhun": "겨울 동",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "겨울 동(ː)"
+  },
+  {
+    "id": "g7-007",
+    "hanja": "登",
+    "eum": [
+      "등"
+    ],
+    "hun": [
+      "오를"
+    ],
+    "eumhun": "오를 등",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "오를 등"
+  },
+  {
+    "id": "g7-008",
+    "hanja": "來",
+    "eum": [
+      "래"
+    ],
+    "hun": [
+      "올"
+    ],
+    "eumhun": "올 래",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "올 래(ː)"
+  },
+  {
+    "id": "g7-009",
+    "hanja": "老",
+    "eum": [
+      "로"
+    ],
+    "hun": [
+      "늙을"
+    ],
+    "eumhun": "늙을 로",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "늙을 로ː"
+  },
+  {
+    "id": "g7-010",
+    "hanja": "里",
+    "eum": [
+      "리"
+    ],
+    "hun": [
+      "마을"
+    ],
+    "eumhun": "마을 리",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "마을 리ː"
+  },
+  {
+    "id": "g7-011",
+    "hanja": "林",
+    "eum": [
+      "림"
+    ],
+    "hun": [
+      "수풀"
+    ],
+    "eumhun": "수풀 림",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "수풀 림"
+  },
+  {
+    "id": "g7-012",
+    "hanja": "面",
+    "eum": [
+      "면"
+    ],
+    "hun": [
+      "낯"
+    ],
+    "eumhun": "낯 면",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "낯 면ː"
+  },
+  {
+    "id": "g7-013",
+    "hanja": "命",
+    "eum": [
+      "명"
+    ],
+    "hun": [
+      "목숨"
+    ],
+    "eumhun": "목숨 명",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "목숨 명ː"
+  },
+  {
+    "id": "g7-014",
+    "hanja": "文",
+    "eum": [
+      "문"
+    ],
+    "hun": [
+      "글월"
+    ],
+    "eumhun": "글월 문",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "글월 문"
+  },
+  {
+    "id": "g7-015",
+    "hanja": "問",
+    "eum": [
+      "문"
+    ],
+    "hun": [
+      "물을"
+    ],
+    "eumhun": "물을 문",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "물을 문ː"
+  },
+  {
+    "id": "g7-016",
+    "hanja": "百",
+    "eum": [
+      "백"
+    ],
+    "hun": [
+      "일백"
+    ],
+    "eumhun": "일백 백",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "일백 백"
+  },
+  {
+    "id": "g7-017",
+    "hanja": "夫",
+    "eum": [
+      "부"
+    ],
+    "hun": [
+      "지아비"
+    ],
+    "eumhun": "지아비 부",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "지아비 부"
+  },
+  {
+    "id": "g7-018",
+    "hanja": "算",
+    "eum": [
+      "산"
+    ],
+    "hun": [
+      "셈"
+    ],
+    "eumhun": "셈 산",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "셈 산ː"
+  },
+  {
+    "id": "g7-019",
+    "hanja": "色",
+    "eum": [
+      "색"
+    ],
+    "hun": [
+      "빛"
+    ],
+    "eumhun": "빛 색",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "빛 색"
+  },
+  {
+    "id": "g7-020",
+    "hanja": "夕",
+    "eum": [
+      "석"
+    ],
+    "hun": [
+      "저녁"
+    ],
+    "eumhun": "저녁 석",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "저녁 석"
+  },
+  {
+    "id": "g7-021",
+    "hanja": "少",
+    "eum": [
+      "소"
+    ],
+    "hun": [
+      "적을"
+    ],
+    "eumhun": "적을 소",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "적을 소ː"
+  },
+  {
+    "id": "g7-022",
+    "hanja": "所",
+    "eum": [
+      "소"
+    ],
+    "hun": [
+      "바"
+    ],
+    "eumhun": "바 소",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "바 소ː"
+  },
+  {
+    "id": "g7-023",
+    "hanja": "數",
+    "eum": [
+      "수"
+    ],
+    "hun": [
+      "셈"
+    ],
+    "eumhun": "셈 수",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "셈 수ː"
+  },
+  {
+    "id": "g7-024",
+    "hanja": "植",
+    "eum": [
+      "식"
+    ],
+    "hun": [
+      "심을"
+    ],
+    "eumhun": "심을 식",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "심을 식"
+  },
+  {
+    "id": "g7-025",
+    "hanja": "心",
+    "eum": [
+      "심"
+    ],
+    "hun": [
+      "마음"
+    ],
+    "eumhun": "마음 심",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "마음 심"
+  },
+  {
+    "id": "g7-026",
+    "hanja": "語",
+    "eum": [
+      "어"
+    ],
+    "hun": [
+      "말씀"
+    ],
+    "eumhun": "말씀 어",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "말씀 어ː"
+  },
+  {
+    "id": "g7-027",
+    "hanja": "然",
+    "eum": [
+      "연"
+    ],
+    "hun": [
+      "그럴"
+    ],
+    "eumhun": "그럴 연",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "그럴 연"
+  },
+  {
+    "id": "g7-028",
+    "hanja": "有",
+    "eum": [
+      "유"
+    ],
+    "hun": [
+      "있을"
+    ],
+    "eumhun": "있을 유",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "있을 유ː"
+  },
+  {
+    "id": "g7-029",
+    "hanja": "育",
+    "eum": [
+      "육"
+    ],
+    "hun": [
+      "기를"
+    ],
+    "eumhun": "기를 육",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "기를 육"
+  },
+  {
+    "id": "g7-030",
+    "hanja": "邑",
+    "eum": [
+      "읍"
+    ],
+    "hun": [
+      "고을"
+    ],
+    "eumhun": "고을 읍",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "고을 읍"
+  },
+  {
+    "id": "g7-031",
+    "hanja": "入",
+    "eum": [
+      "입"
+    ],
+    "hun": [
+      "들"
+    ],
+    "eumhun": "들 입",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "들 입"
+  },
+  {
+    "id": "g7-032",
+    "hanja": "字",
+    "eum": [
+      "자"
+    ],
+    "hun": [
+      "글자"
+    ],
+    "eumhun": "글자 자",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "글자 자"
+  },
+  {
+    "id": "g7-033",
+    "hanja": "祖",
+    "eum": [
+      "조"
+    ],
+    "hun": [
+      "할아비"
+    ],
+    "eumhun": "할아비 조",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "할아비 조"
+  },
+  {
+    "id": "g7-034",
+    "hanja": "住",
+    "eum": [
+      "주"
+    ],
+    "hun": [
+      "살"
+    ],
+    "eumhun": "살 주",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "살 주ː"
+  },
+  {
+    "id": "g7-035",
+    "hanja": "主",
+    "eum": [
+      "주"
+    ],
+    "hun": [
+      "임금/주인"
+    ],
+    "eumhun": "임금/주인 주",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "임금/주인 주"
+  },
+  {
+    "id": "g7-036",
+    "hanja": "重",
+    "eum": [
+      "중"
+    ],
+    "hun": [
+      "무거울"
+    ],
+    "eumhun": "무거울 중",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "무거울 중ː"
+  },
+  {
+    "id": "g7-037",
+    "hanja": "紙",
+    "eum": [
+      "지"
+    ],
+    "hun": [
+      "종이"
+    ],
+    "eumhun": "종이 지",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "종이 지"
+  },
+  {
+    "id": "g7-038",
+    "hanja": "地",
+    "eum": [
+      "지"
+    ],
+    "hun": [
+      "땅"
+    ],
+    "eumhun": "땅 지",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "땅 지"
+  },
+  {
+    "id": "g7-039",
+    "hanja": "千",
+    "eum": [
+      "천"
+    ],
+    "hun": [
+      "일천"
+    ],
+    "eumhun": "일천 천",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "일천 천"
+  },
+  {
+    "id": "g7-040",
+    "hanja": "天",
+    "eum": [
+      "천"
+    ],
+    "hun": [
+      "하늘"
+    ],
+    "eumhun": "하늘 천",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "하늘 천"
+  },
+  {
+    "id": "g7-041",
+    "hanja": "川",
+    "eum": [
+      "천"
+    ],
+    "hun": [
+      "내"
+    ],
+    "eumhun": "내 천",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "내 천"
+  },
+  {
+    "id": "g7-042",
+    "hanja": "草",
+    "eum": [
+      "초"
+    ],
+    "hun": [
+      "풀"
+    ],
+    "eumhun": "풀 초",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "풀 초"
+  },
+  {
+    "id": "g7-043",
+    "hanja": "村",
+    "eum": [
+      "촌"
+    ],
+    "hun": [
+      "마을"
+    ],
+    "eumhun": "마을 촌",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "마을 촌ː"
+  },
+  {
+    "id": "g7-044",
+    "hanja": "秋",
+    "eum": [
+      "추"
+    ],
+    "hun": [
+      "가을"
+    ],
+    "eumhun": "가을 추",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "가을 추"
+  },
+  {
+    "id": "g7-045",
+    "hanja": "春",
+    "eum": [
+      "춘"
+    ],
+    "hun": [
+      "봄"
+    ],
+    "eumhun": "봄 춘",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "봄 춘"
+  },
+  {
+    "id": "g7-046",
+    "hanja": "出",
+    "eum": [
+      "출"
+    ],
+    "hun": [
+      "날"
+    ],
+    "eumhun": "날 출",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "날 출"
+  },
+  {
+    "id": "g7-047",
+    "hanja": "便",
+    "eum": [
+      "편",
+      "변"
+    ],
+    "hun": [
+      "편할",
+      "똥오줌"
+    ],
+    "eumhun": "편할 편",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "편할 편(ː) | 똥오줌 변"
+  },
+  {
+    "id": "g7-048",
+    "hanja": "夏",
+    "eum": [
+      "하"
+    ],
+    "hun": [
+      "여름"
+    ],
+    "eumhun": "여름 하",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "여름 하ː"
+  },
+  {
+    "id": "g7-049",
+    "hanja": "花",
+    "eum": [
+      "화"
+    ],
+    "hun": [
+      "꽃"
+    ],
+    "eumhun": "꽃 화",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "꽃 화"
+  },
+  {
+    "id": "g7-050",
+    "hanja": "休",
+    "eum": [
+      "휴"
+    ],
+    "hun": [
+      "쉴"
+    ],
+    "eumhun": "쉴 휴",
+    "grade": "7급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "쉴 휴"
+  },
+  {
+    "id": "g6p-001",
+    "hanja": "各",
+    "eum": [
+      "각"
+    ],
+    "hun": [
+      "각각"
+    ],
+    "eumhun": "각각 각",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "각각 각"
+  },
+  {
+    "id": "g6p-002",
+    "hanja": "角",
+    "eum": [
+      "각"
+    ],
+    "hun": [
+      "뿔"
+    ],
+    "eumhun": "뿔 각",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "뿔 각"
+  },
+  {
+    "id": "g6p-003",
+    "hanja": "界",
+    "eum": [
+      "계"
+    ],
+    "hun": [
+      "지경"
+    ],
+    "eumhun": "지경 계",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "지경 계ː"
+  },
+  {
+    "id": "g6p-004",
+    "hanja": "計",
+    "eum": [
+      "계"
+    ],
+    "hun": [
+      "셀"
+    ],
+    "eumhun": "셀 계",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "셀 계ː"
+  },
+  {
+    "id": "g6p-005",
+    "hanja": "高",
+    "eum": [
+      "고"
+    ],
+    "hun": [
+      "높을"
+    ],
+    "eumhun": "높을 고",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "높을 고"
+  },
+  {
+    "id": "g6p-006",
+    "hanja": "公",
+    "eum": [
+      "공"
+    ],
+    "hun": [
+      "공평할"
+    ],
+    "eumhun": "공평할 공",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "공평할 공"
+  },
+  {
+    "id": "g6p-007",
+    "hanja": "共",
+    "eum": [
+      "공"
+    ],
+    "hun": [
+      "한가지"
+    ],
+    "eumhun": "한가지 공",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "한가지 공ː"
+  },
+  {
+    "id": "g6p-008",
+    "hanja": "功",
+    "eum": [
+      "공"
+    ],
+    "hun": [
+      "공"
+    ],
+    "eumhun": "공 공",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "공 공"
+  },
+  {
+    "id": "g6p-009",
+    "hanja": "果",
+    "eum": [
+      "과"
+    ],
+    "hun": [
+      "열매"
+    ],
+    "eumhun": "열매 과",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "열매 과ː"
+  },
+  {
+    "id": "g6p-010",
+    "hanja": "科",
+    "eum": [
+      "과"
+    ],
+    "hun": [
+      "과목"
+    ],
+    "eumhun": "과목 과",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "과목 과"
+  },
+  {
+    "id": "g6p-011",
+    "hanja": "光",
+    "eum": [
+      "광"
+    ],
+    "hun": [
+      "빛"
+    ],
+    "eumhun": "빛 광",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "빛 광"
+  },
+  {
+    "id": "g6p-012",
+    "hanja": "球",
+    "eum": [
+      "구"
+    ],
+    "hun": [
+      "공"
+    ],
+    "eumhun": "공 구",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "공 구"
+  },
+  {
+    "id": "g6p-013",
+    "hanja": "今",
+    "eum": [
+      "금"
+    ],
+    "hun": [
+      "이제"
+    ],
+    "eumhun": "이제 금",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "이제 금"
+  },
+  {
+    "id": "g6p-014",
+    "hanja": "急",
+    "eum": [
+      "급"
+    ],
+    "hun": [
+      "급할"
+    ],
+    "eumhun": "급할 급",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "급할 급"
+  },
+  {
+    "id": "g6p-015",
+    "hanja": "短",
+    "eum": [
+      "단"
+    ],
+    "hun": [
+      "짧을"
+    ],
+    "eumhun": "짧을 단",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "짧을 단(ː)"
+  },
+  {
+    "id": "g6p-016",
+    "hanja": "堂",
+    "eum": [
+      "당"
+    ],
+    "hun": [
+      "집"
+    ],
+    "eumhun": "집 당",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "집 당"
+  },
+  {
+    "id": "g6p-017",
+    "hanja": "代",
+    "eum": [
+      "대"
+    ],
+    "hun": [
+      "대신할"
+    ],
+    "eumhun": "대신할 대",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "대신할 대ː"
+  },
+  {
+    "id": "g6p-018",
+    "hanja": "對",
+    "eum": [
+      "대"
+    ],
+    "hun": [
+      "대할"
+    ],
+    "eumhun": "대할 대",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "대할 대ː"
+  },
+  {
+    "id": "g6p-019",
+    "hanja": "圖",
+    "eum": [
+      "도"
+    ],
+    "hun": [
+      "그림"
+    ],
+    "eumhun": "그림 도",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "그림 도"
+  },
+  {
+    "id": "g6p-020",
+    "hanja": "讀",
+    "eum": [
+      "독",
+      "두"
+    ],
+    "hun": [
+      "읽을",
+      "구절"
+    ],
+    "eumhun": "읽을 독",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "읽을 독 | 구절 두"
+  },
+  {
+    "id": "g6p-021",
+    "hanja": "童",
+    "eum": [
+      "동"
+    ],
+    "hun": [
+      "아이"
+    ],
+    "eumhun": "아이 동",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "아이 동(ː)"
+  },
+  {
+    "id": "g6p-022",
+    "hanja": "等",
+    "eum": [
+      "등"
+    ],
+    "hun": [
+      "무리"
+    ],
+    "eumhun": "무리 등",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "무리 등ː"
+  },
+  {
+    "id": "g6p-023",
+    "hanja": "樂",
+    "eum": [
+      "락",
+      "악",
+      "요"
+    ],
+    "hun": [
+      "즐길",
+      "노래",
+      "좋아할"
+    ],
+    "eumhun": "즐길 락",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "즐길 락 | 노래 악 | 좋아할 요"
+  },
+  {
+    "id": "g6p-024",
+    "hanja": "利",
+    "eum": [
+      "리"
+    ],
+    "hun": [
+      "이할"
+    ],
+    "eumhun": "이할 리",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "이할 리ː"
+  },
+  {
+    "id": "g6p-025",
+    "hanja": "理",
+    "eum": [
+      "리"
+    ],
+    "hun": [
+      "다스릴"
+    ],
+    "eumhun": "다스릴 리",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "다스릴 리ː"
+  },
+  {
+    "id": "g6p-026",
+    "hanja": "明",
+    "eum": [
+      "명"
+    ],
+    "hun": [
+      "밝을"
+    ],
+    "eumhun": "밝을 명",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "밝을 명"
+  },
+  {
+    "id": "g6p-027",
+    "hanja": "聞",
+    "eum": [
+      "문"
+    ],
+    "hun": [
+      "들을"
+    ],
+    "eumhun": "들을 문",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "들을 문(ː)"
+  },
+  {
+    "id": "g6p-028",
+    "hanja": "半",
+    "eum": [
+      "반"
+    ],
+    "hun": [
+      "반"
+    ],
+    "eumhun": "반 반",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "반 반ː"
+  },
+  {
+    "id": "g6p-029",
+    "hanja": "反",
+    "eum": [
+      "반"
+    ],
+    "hun": [
+      "돌이킬/돌아올"
+    ],
+    "eumhun": "돌이킬/돌아올 반",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "돌이킬/돌아올 반ː"
+  },
+  {
+    "id": "g6p-030",
+    "hanja": "班",
+    "eum": [
+      "반"
+    ],
+    "hun": [
+      "나눌"
+    ],
+    "eumhun": "나눌 반",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "나눌 반"
+  },
+  {
+    "id": "g6p-031",
+    "hanja": "發",
+    "eum": [
+      "발"
+    ],
+    "hun": [
+      "필"
+    ],
+    "eumhun": "필 발",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "필 발"
+  },
+  {
+    "id": "g6p-032",
+    "hanja": "放",
+    "eum": [
+      "방"
+    ],
+    "hun": [
+      "놓을"
+    ],
+    "eumhun": "놓을 방",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "놓을 방(ː)"
+  },
+  {
+    "id": "g6p-033",
+    "hanja": "部",
+    "eum": [
+      "부"
+    ],
+    "hun": [
+      "떼"
+    ],
+    "eumhun": "떼 부",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "떼 부"
+  },
+  {
+    "id": "g6p-034",
+    "hanja": "分",
+    "eum": [
+      "분"
+    ],
+    "hun": [
+      "나눌"
+    ],
+    "eumhun": "나눌 분",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "나눌 분(ː)"
+  },
+  {
+    "id": "g6p-035",
+    "hanja": "社",
+    "eum": [
+      "사"
+    ],
+    "hun": [
+      "모일"
+    ],
+    "eumhun": "모일 사",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "모일 사"
+  },
+  {
+    "id": "g6p-036",
+    "hanja": "書",
+    "eum": [
+      "서"
+    ],
+    "hun": [
+      "글"
+    ],
+    "eumhun": "글 서",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "글 서"
+  },
+  {
+    "id": "g6p-037",
+    "hanja": "線",
+    "eum": [
+      "선"
+    ],
+    "hun": [
+      "줄"
+    ],
+    "eumhun": "줄 선",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "줄 선"
+  },
+  {
+    "id": "g6p-038",
+    "hanja": "雪",
+    "eum": [
+      "설"
+    ],
+    "hun": [
+      "눈"
+    ],
+    "eumhun": "눈 설",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "눈 설"
+  },
+  {
+    "id": "g6p-039",
+    "hanja": "成",
+    "eum": [
+      "성"
+    ],
+    "hun": [
+      "이룰"
+    ],
+    "eumhun": "이룰 성",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "이룰 성"
+  },
+  {
+    "id": "g6p-040",
+    "hanja": "省",
+    "eum": [
+      "성",
+      "생"
+    ],
+    "hun": [
+      "살필",
+      "덜"
+    ],
+    "eumhun": "살필 성",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "살필 성 | 덜 생"
+  },
+  {
+    "id": "g6p-041",
+    "hanja": "消",
+    "eum": [
+      "소"
+    ],
+    "hun": [
+      "사라질"
+    ],
+    "eumhun": "사라질 소",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "사라질 소"
+  },
+  {
+    "id": "g6p-042",
+    "hanja": "術",
+    "eum": [
+      "술"
+    ],
+    "hun": [
+      "재주"
+    ],
+    "eumhun": "재주 술",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "재주 술"
+  },
+  {
+    "id": "g6p-043",
+    "hanja": "始",
+    "eum": [
+      "시"
+    ],
+    "hun": [
+      "비로소"
+    ],
+    "eumhun": "비로소 시",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "비로소 시"
+  },
+  {
+    "id": "g6p-044",
+    "hanja": "身",
+    "eum": [
+      "신"
+    ],
+    "hun": [
+      "몸"
+    ],
+    "eumhun": "몸 신",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "몸 신"
+  },
+  {
+    "id": "g6p-045",
+    "hanja": "神",
+    "eum": [
+      "신"
+    ],
+    "hun": [
+      "귀신"
+    ],
+    "eumhun": "귀신 신",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "귀신 신"
+  },
+  {
+    "id": "g6p-046",
+    "hanja": "信",
+    "eum": [
+      "신"
+    ],
+    "hun": [
+      "믿을"
+    ],
+    "eumhun": "믿을 신",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "믿을 신ː"
+  },
+  {
+    "id": "g6p-047",
+    "hanja": "新",
+    "eum": [
+      "신"
+    ],
+    "hun": [
+      "새"
+    ],
+    "eumhun": "새 신",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "새 신"
+  },
+  {
+    "id": "g6p-048",
+    "hanja": "弱",
+    "eum": [
+      "약"
+    ],
+    "hun": [
+      "약할"
+    ],
+    "eumhun": "약할 약",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "약할 약"
+  },
+  {
+    "id": "g6p-049",
+    "hanja": "藥",
+    "eum": [
+      "약"
+    ],
+    "hun": [
+      "약"
+    ],
+    "eumhun": "약 약",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "약 약"
+  },
+  {
+    "id": "g6p-050",
+    "hanja": "業",
+    "eum": [
+      "업"
+    ],
+    "hun": [
+      "업"
+    ],
+    "eumhun": "업 업",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "업 업"
+  },
+  {
+    "id": "g6p-051",
+    "hanja": "勇",
+    "eum": [
+      "용"
+    ],
+    "hun": [
+      "날랠"
+    ],
+    "eumhun": "날랠 용",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "날랠 용ː"
+  },
+  {
+    "id": "g6p-052",
+    "hanja": "用",
+    "eum": [
+      "용"
+    ],
+    "hun": [
+      "쓸"
+    ],
+    "eumhun": "쓸 용",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "쓸 용ː"
+  },
+  {
+    "id": "g6p-053",
+    "hanja": "運",
+    "eum": [
+      "운"
+    ],
+    "hun": [
+      "옮길"
+    ],
+    "eumhun": "옮길 운",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "옮길 운ː"
+  },
+  {
+    "id": "g6p-054",
+    "hanja": "音",
+    "eum": [
+      "음"
+    ],
+    "hun": [
+      "소리"
+    ],
+    "eumhun": "소리 음",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "소리 음"
+  },
+  {
+    "id": "g6p-055",
+    "hanja": "飮",
+    "eum": [
+      "음"
+    ],
+    "hun": [
+      "마실"
+    ],
+    "eumhun": "마실 음",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "마실 음(ː)"
+  },
+  {
+    "id": "g6p-056",
+    "hanja": "意",
+    "eum": [
+      "의"
+    ],
+    "hun": [
+      "뜻"
+    ],
+    "eumhun": "뜻 의",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "뜻 의ː"
+  },
+  {
+    "id": "g6p-057",
+    "hanja": "作",
+    "eum": [
+      "작"
+    ],
+    "hun": [
+      "지을"
+    ],
+    "eumhun": "지을 작",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "지을 작"
+  },
+  {
+    "id": "g6p-058",
+    "hanja": "昨",
+    "eum": [
+      "작"
+    ],
+    "hun": [
+      "어제"
+    ],
+    "eumhun": "어제 작",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "어제 작"
+  },
+  {
+    "id": "g6p-059",
+    "hanja": "才",
+    "eum": [
+      "재"
+    ],
+    "hun": [
+      "재주"
+    ],
+    "eumhun": "재주 재",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "재주 재"
+  },
+  {
+    "id": "g6p-060",
+    "hanja": "戰",
+    "eum": [
+      "전"
+    ],
+    "hun": [
+      "싸움"
+    ],
+    "eumhun": "싸움 전",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "싸움 전ː"
+  },
+  {
+    "id": "g6p-061",
+    "hanja": "庭",
+    "eum": [
+      "정"
+    ],
+    "hun": [
+      "뜰"
+    ],
+    "eumhun": "뜰 정",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "뜰 정"
+  },
+  {
+    "id": "g6p-062",
+    "hanja": "第",
+    "eum": [
+      "제"
+    ],
+    "hun": [
+      "차례"
+    ],
+    "eumhun": "차례 제",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "차례 제ː"
+  },
+  {
+    "id": "g6p-063",
+    "hanja": "題",
+    "eum": [
+      "제"
+    ],
+    "hun": [
+      "제목"
+    ],
+    "eumhun": "제목 제",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "제목 제"
+  },
+  {
+    "id": "g6p-064",
+    "hanja": "注",
+    "eum": [
+      "주"
+    ],
+    "hun": [
+      "부을"
+    ],
+    "eumhun": "부을 주",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "부을 주ː"
+  },
+  {
+    "id": "g6p-065",
+    "hanja": "集",
+    "eum": [
+      "집"
+    ],
+    "hun": [
+      "모을"
+    ],
+    "eumhun": "모을 집",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "모을 집"
+  },
+  {
+    "id": "g6p-066",
+    "hanja": "窓",
+    "eum": [
+      "창"
+    ],
+    "hun": [
+      "창"
+    ],
+    "eumhun": "창 창",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "창 창"
+  },
+  {
+    "id": "g6p-067",
+    "hanja": "淸",
+    "eum": [
+      "청"
+    ],
+    "hun": [
+      "맑을"
+    ],
+    "eumhun": "맑을 청",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "맑을 청"
+  },
+  {
+    "id": "g6p-068",
+    "hanja": "體",
+    "eum": [
+      "체"
+    ],
+    "hun": [
+      "몸"
+    ],
+    "eumhun": "몸 체",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "몸 체"
+  },
+  {
+    "id": "g6p-069",
+    "hanja": "表",
+    "eum": [
+      "표"
+    ],
+    "hun": [
+      "겉"
+    ],
+    "eumhun": "겉 표",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "겉 표"
+  },
+  {
+    "id": "g6p-070",
+    "hanja": "風",
+    "eum": [
+      "풍"
+    ],
+    "hun": [
+      "바람"
+    ],
+    "eumhun": "바람 풍",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "바람 풍"
+  },
+  {
+    "id": "g6p-071",
+    "hanja": "幸",
+    "eum": [
+      "행"
+    ],
+    "hun": [
+      "다행"
+    ],
+    "eumhun": "다행 행",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "다행 행ː"
+  },
+  {
+    "id": "g6p-072",
+    "hanja": "現",
+    "eum": [
+      "현"
+    ],
+    "hun": [
+      "나타날"
+    ],
+    "eumhun": "나타날 현",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "나타날 현ː"
+  },
+  {
+    "id": "g6p-073",
+    "hanja": "形",
+    "eum": [
+      "형"
+    ],
+    "hun": [
+      "모양"
+    ],
+    "eumhun": "모양 형",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "모양 형"
+  },
+  {
+    "id": "g6p-074",
+    "hanja": "和",
+    "eum": [
+      "화"
+    ],
+    "hun": [
+      "화할"
+    ],
+    "eumhun": "화할 화",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "화할 화"
+  },
+  {
+    "id": "g6p-075",
+    "hanja": "會",
+    "eum": [
+      "회"
+    ],
+    "hun": [
+      "모일"
+    ],
+    "eumhun": "모일 회",
+    "grade": "준6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "모일 회ː"
+  },
+  {
+    "id": "g6-001",
+    "hanja": "感",
+    "eum": [
+      "감"
+    ],
+    "hun": [
+      "느낄"
+    ],
+    "eumhun": "느낄 감",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "느낄 감ː"
+  },
+  {
+    "id": "g6-002",
+    "hanja": "強",
+    "eum": [
+      "강"
+    ],
+    "hun": [
+      "강할"
+    ],
+    "eumhun": "강할 강",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "강할 강(ː)"
+  },
+  {
+    "id": "g6-003",
+    "hanja": "開",
+    "eum": [
+      "개"
+    ],
+    "hun": [
+      "열"
+    ],
+    "eumhun": "열 개",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "열 개"
+  },
+  {
+    "id": "g6-004",
+    "hanja": "京",
+    "eum": [
+      "경"
+    ],
+    "hun": [
+      "서울"
+    ],
+    "eumhun": "서울 경",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "서울 경"
+  },
+  {
+    "id": "g6-005",
+    "hanja": "古",
+    "eum": [
+      "고"
+    ],
+    "hun": [
+      "옛"
+    ],
+    "eumhun": "옛 고",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "옛 고ː"
+  },
+  {
+    "id": "g6-006",
+    "hanja": "苦",
+    "eum": [
+      "고"
+    ],
+    "hun": [
+      "쓸"
+    ],
+    "eumhun": "쓸 고",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "쓸 고"
+  },
+  {
+    "id": "g6-007",
+    "hanja": "交",
+    "eum": [
+      "교"
+    ],
+    "hun": [
+      "사귈"
+    ],
+    "eumhun": "사귈 교",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "사귈 교"
+  },
+  {
+    "id": "g6-008",
+    "hanja": "區",
+    "eum": [
+      "구"
+    ],
+    "hun": [
+      "구분할/지경"
+    ],
+    "eumhun": "구분할/지경 구",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "구분할/지경 구"
+  },
+  {
+    "id": "g6-009",
+    "hanja": "郡",
+    "eum": [
+      "군"
+    ],
+    "hun": [
+      "고을"
+    ],
+    "eumhun": "고을 군",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "고을 군ː"
+  },
+  {
+    "id": "g6-010",
+    "hanja": "根",
+    "eum": [
+      "근"
+    ],
+    "hun": [
+      "뿌리"
+    ],
+    "eumhun": "뿌리 근",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "뿌리 근"
+  },
+  {
+    "id": "g6-011",
+    "hanja": "近",
+    "eum": [
+      "근"
+    ],
+    "hun": [
+      "가까울"
+    ],
+    "eumhun": "가까울 근",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "가까울 근ː"
+  },
+  {
+    "id": "g6-012",
+    "hanja": "級",
+    "eum": [
+      "급"
+    ],
+    "hun": [
+      "등급"
+    ],
+    "eumhun": "등급 급",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "등급 급"
+  },
+  {
+    "id": "g6-013",
+    "hanja": "多",
+    "eum": [
+      "다"
+    ],
+    "hun": [
+      "많을"
+    ],
+    "eumhun": "많을 다",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "많을 다"
+  },
+  {
+    "id": "g6-014",
+    "hanja": "待",
+    "eum": [
+      "대"
+    ],
+    "hun": [
+      "기다릴"
+    ],
+    "eumhun": "기다릴 대",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "기다릴 대ː"
+  },
+  {
+    "id": "g6-015",
+    "hanja": "度",
+    "eum": [
+      "도",
+      "탁"
+    ],
+    "hun": [
+      "법도",
+      "헤아릴"
+    ],
+    "eumhun": "법도 도",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "법도 도(ː) | 헤아릴 탁"
+  },
+  {
+    "id": "g6-016",
+    "hanja": "頭",
+    "eum": [
+      "두"
+    ],
+    "hun": [
+      "머리"
+    ],
+    "eumhun": "머리 두",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "머리 두"
+  },
+  {
+    "id": "g6-017",
+    "hanja": "例",
+    "eum": [
+      "례"
+    ],
+    "hun": [
+      "법식"
+    ],
+    "eumhun": "법식 례",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "법식 례ː"
+  },
+  {
+    "id": "g6-018",
+    "hanja": "禮",
+    "eum": [
+      "례"
+    ],
+    "hun": [
+      "예도"
+    ],
+    "eumhun": "예도 례",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "예도 례ː"
+  },
+  {
+    "id": "g6-019",
+    "hanja": "路",
+    "eum": [
+      "로"
+    ],
+    "hun": [
+      "길"
+    ],
+    "eumhun": "길 로",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "길 로ː"
+  },
+  {
+    "id": "g6-020",
+    "hanja": "綠",
+    "eum": [
+      "록"
+    ],
+    "hun": [
+      "푸를"
+    ],
+    "eumhun": "푸를 록",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "푸를 록"
+  },
+  {
+    "id": "g6-021",
+    "hanja": "李",
+    "eum": [
+      "리"
+    ],
+    "hun": [
+      "오얏/성"
+    ],
+    "eumhun": "오얏/성 리",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "오얏/성 리ː"
+  },
+  {
+    "id": "g6-022",
+    "hanja": "目",
+    "eum": [
+      "목"
+    ],
+    "hun": [
+      "눈"
+    ],
+    "eumhun": "눈 목",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "눈 목"
+  },
+  {
+    "id": "g6-023",
+    "hanja": "美",
+    "eum": [
+      "미"
+    ],
+    "hun": [
+      "아름다울"
+    ],
+    "eumhun": "아름다울 미",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "아름다울 미(ː)"
+  },
+  {
+    "id": "g6-024",
+    "hanja": "米",
+    "eum": [
+      "미"
+    ],
+    "hun": [
+      "쌀"
+    ],
+    "eumhun": "쌀 미",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "쌀 미"
+  },
+  {
+    "id": "g6-025",
+    "hanja": "朴",
+    "eum": [
+      "박"
+    ],
+    "hun": [
+      "성"
+    ],
+    "eumhun": "성 박",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "성 박"
+  },
+  {
+    "id": "g6-026",
+    "hanja": "番",
+    "eum": [
+      "번"
+    ],
+    "hun": [
+      "차례"
+    ],
+    "eumhun": "차례 번",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "차례 번"
+  },
+  {
+    "id": "g6-027",
+    "hanja": "別",
+    "eum": [
+      "별"
+    ],
+    "hun": [
+      "다를/나눌"
+    ],
+    "eumhun": "다를/나눌 별",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "다를/나눌 별"
+  },
+  {
+    "id": "g6-028",
+    "hanja": "病",
+    "eum": [
+      "병"
+    ],
+    "hun": [
+      "병"
+    ],
+    "eumhun": "병 병",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "병 병ː"
+  },
+  {
+    "id": "g6-029",
+    "hanja": "服",
+    "eum": [
+      "복"
+    ],
+    "hun": [
+      "옷"
+    ],
+    "eumhun": "옷 복",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "옷 복"
+  },
+  {
+    "id": "g6-030",
+    "hanja": "本",
+    "eum": [
+      "본"
+    ],
+    "hun": [
+      "근본"
+    ],
+    "eumhun": "근본 본",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "근본 본"
+  },
+  {
+    "id": "g6-031",
+    "hanja": "使",
+    "eum": [
+      "사"
+    ],
+    "hun": [
+      "하여금/부릴"
+    ],
+    "eumhun": "하여금/부릴 사",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "하여금/부릴 사ː"
+  },
+  {
+    "id": "g6-032",
+    "hanja": "死",
+    "eum": [
+      "사"
+    ],
+    "hun": [
+      "죽을"
+    ],
+    "eumhun": "죽을 사",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "죽을 사ː"
+  },
+  {
+    "id": "g6-033",
+    "hanja": "席",
+    "eum": [
+      "석"
+    ],
+    "hun": [
+      "자리"
+    ],
+    "eumhun": "자리 석",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "자리 석"
+  },
+  {
+    "id": "g6-034",
+    "hanja": "石",
+    "eum": [
+      "석"
+    ],
+    "hun": [
+      "돌"
+    ],
+    "eumhun": "돌 석",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "돌 석"
+  },
+  {
+    "id": "g6-035",
+    "hanja": "速",
+    "eum": [
+      "속"
+    ],
+    "hun": [
+      "빠를"
+    ],
+    "eumhun": "빠를 속",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "빠를 속"
+  },
+  {
+    "id": "g6-036",
+    "hanja": "孫",
+    "eum": [
+      "손"
+    ],
+    "hun": [
+      "손자"
+    ],
+    "eumhun": "손자 손",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "손자 손(ː)"
+  },
+  {
+    "id": "g6-037",
+    "hanja": "樹",
+    "eum": [
+      "수"
+    ],
+    "hun": [
+      "나무"
+    ],
+    "eumhun": "나무 수",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "나무 수"
+  },
+  {
+    "id": "g6-038",
+    "hanja": "習",
+    "eum": [
+      "습"
+    ],
+    "hun": [
+      "익힐"
+    ],
+    "eumhun": "익힐 습",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "익힐 습"
+  },
+  {
+    "id": "g6-039",
+    "hanja": "勝",
+    "eum": [
+      "승"
+    ],
+    "hun": [
+      "이길"
+    ],
+    "eumhun": "이길 승",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "이길 승"
+  },
+  {
+    "id": "g6-040",
+    "hanja": "式",
+    "eum": [
+      "식"
+    ],
+    "hun": [
+      "법"
+    ],
+    "eumhun": "법 식",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "법 식"
+  },
+  {
+    "id": "g6-041",
+    "hanja": "失",
+    "eum": [
+      "실"
+    ],
+    "hun": [
+      "잃을"
+    ],
+    "eumhun": "잃을 실",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "잃을 실"
+  },
+  {
+    "id": "g6-042",
+    "hanja": "愛",
+    "eum": [
+      "애"
+    ],
+    "hun": [
+      "사랑"
+    ],
+    "eumhun": "사랑 애",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "사랑 애(ː)"
+  },
+  {
+    "id": "g6-043",
+    "hanja": "夜",
+    "eum": [
+      "야"
+    ],
+    "hun": [
+      "밤"
+    ],
+    "eumhun": "밤 야",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "밤 야ː"
+  },
+  {
+    "id": "g6-044",
+    "hanja": "野",
+    "eum": [
+      "야"
+    ],
+    "hun": [
+      "들"
+    ],
+    "eumhun": "들 야",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "들 야ː"
+  },
+  {
+    "id": "g6-045",
+    "hanja": "陽",
+    "eum": [
+      "양"
+    ],
+    "hun": [
+      "볕"
+    ],
+    "eumhun": "볕 양",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "볕 양"
+  },
+  {
+    "id": "g6-046",
+    "hanja": "洋",
+    "eum": [
+      "양"
+    ],
+    "hun": [
+      "큰바다"
+    ],
+    "eumhun": "큰바다 양",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "큰바다 양"
+  },
+  {
+    "id": "g6-047",
+    "hanja": "言",
+    "eum": [
+      "언"
+    ],
+    "hun": [
+      "말씀"
+    ],
+    "eumhun": "말씀 언",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "말씀 언"
+  },
+  {
+    "id": "g6-048",
+    "hanja": "英",
+    "eum": [
+      "영"
+    ],
+    "hun": [
+      "꽃부리"
+    ],
+    "eumhun": "꽃부리 영",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "꽃부리 영"
+  },
+  {
+    "id": "g6-049",
+    "hanja": "永",
+    "eum": [
+      "영"
+    ],
+    "hun": [
+      "길"
+    ],
+    "eumhun": "길 영",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "길 영ː"
+  },
+  {
+    "id": "g6-050",
+    "hanja": "溫",
+    "eum": [
+      "온"
+    ],
+    "hun": [
+      "따뜻할"
+    ],
+    "eumhun": "따뜻할 온",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "따뜻할 온"
+  },
+  {
+    "id": "g6-051",
+    "hanja": "園",
+    "eum": [
+      "원"
+    ],
+    "hun": [
+      "동산"
+    ],
+    "eumhun": "동산 원",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "동산 원"
+  },
+  {
+    "id": "g6-052",
+    "hanja": "遠",
+    "eum": [
+      "원"
+    ],
+    "hun": [
+      "멀"
+    ],
+    "eumhun": "멀 원",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "멀 원ː"
+  },
+  {
+    "id": "g6-053",
+    "hanja": "由",
+    "eum": [
+      "유"
+    ],
+    "hun": [
+      "말미암을"
+    ],
+    "eumhun": "말미암을 유",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "말미암을 유"
+  },
+  {
+    "id": "g6-054",
+    "hanja": "油",
+    "eum": [
+      "유"
+    ],
+    "hun": [
+      "기름"
+    ],
+    "eumhun": "기름 유",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "기름 유"
+  },
+  {
+    "id": "g6-055",
+    "hanja": "銀",
+    "eum": [
+      "은"
+    ],
+    "hun": [
+      "은"
+    ],
+    "eumhun": "은 은",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "은 은"
+  },
+  {
+    "id": "g6-056",
+    "hanja": "醫",
+    "eum": [
+      "의"
+    ],
+    "hun": [
+      "의원"
+    ],
+    "eumhun": "의원 의",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "의원 의"
+  },
+  {
+    "id": "g6-057",
+    "hanja": "衣",
+    "eum": [
+      "의"
+    ],
+    "hun": [
+      "옷"
+    ],
+    "eumhun": "옷 의",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "옷 의"
+  },
+  {
+    "id": "g6-058",
+    "hanja": "者",
+    "eum": [
+      "자"
+    ],
+    "hun": [
+      "놈"
+    ],
+    "eumhun": "놈 자",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "놈 자"
+  },
+  {
+    "id": "g6-059",
+    "hanja": "章",
+    "eum": [
+      "장"
+    ],
+    "hun": [
+      "글"
+    ],
+    "eumhun": "글 장",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "글 장"
+  },
+  {
+    "id": "g6-060",
+    "hanja": "在",
+    "eum": [
+      "재"
+    ],
+    "hun": [
+      "있을"
+    ],
+    "eumhun": "있을 재",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "있을 재ː"
+  },
+  {
+    "id": "g6-061",
+    "hanja": "定",
+    "eum": [
+      "정"
+    ],
+    "hun": [
+      "정할"
+    ],
+    "eumhun": "정할 정",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "정할 정ː"
+  },
+  {
+    "id": "g6-062",
+    "hanja": "朝",
+    "eum": [
+      "조"
+    ],
+    "hun": [
+      "아침"
+    ],
+    "eumhun": "아침 조",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "아침 조"
+  },
+  {
+    "id": "g6-063",
+    "hanja": "族",
+    "eum": [
+      "족"
+    ],
+    "hun": [
+      "겨레"
+    ],
+    "eumhun": "겨레 족",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "겨레 족"
+  },
+  {
+    "id": "g6-064",
+    "hanja": "晝",
+    "eum": [
+      "주"
+    ],
+    "hun": [
+      "낮"
+    ],
+    "eumhun": "낮 주",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "낮 주"
+  },
+  {
+    "id": "g6-065",
+    "hanja": "親",
+    "eum": [
+      "친"
+    ],
+    "hun": [
+      "친할"
+    ],
+    "eumhun": "친할 친",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "친할 친"
+  },
+  {
+    "id": "g6-066",
+    "hanja": "太",
+    "eum": [
+      "태"
+    ],
+    "hun": [
+      "클"
+    ],
+    "eumhun": "클 태",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "클 태"
+  },
+  {
+    "id": "g6-067",
+    "hanja": "通",
+    "eum": [
+      "통"
+    ],
+    "hun": [
+      "통할"
+    ],
+    "eumhun": "통할 통",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "통할 통"
+  },
+  {
+    "id": "g6-068",
+    "hanja": "特",
+    "eum": [
+      "특"
+    ],
+    "hun": [
+      "특별할"
+    ],
+    "eumhun": "특별할 특",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "특별할 특"
+  },
+  {
+    "id": "g6-069",
+    "hanja": "合",
+    "eum": [
+      "합"
+    ],
+    "hun": [
+      "합할"
+    ],
+    "eumhun": "합할 합",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "합할 합"
+  },
+  {
+    "id": "g6-070",
+    "hanja": "行",
+    "eum": [
+      "행",
+      "항"
+    ],
+    "hun": [
+      "다닐",
+      "항렬"
+    ],
+    "eumhun": "다닐 행",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "다닐 행(ː) | 항렬 항"
+  },
+  {
+    "id": "g6-071",
+    "hanja": "向",
+    "eum": [
+      "향"
+    ],
+    "hun": [
+      "향할"
+    ],
+    "eumhun": "향할 향",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "향할 향ː"
+  },
+  {
+    "id": "g6-072",
+    "hanja": "號",
+    "eum": [
+      "호"
+    ],
+    "hun": [
+      "이름"
+    ],
+    "eumhun": "이름 호",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "이름 호(ː)"
+  },
+  {
+    "id": "g6-073",
+    "hanja": "畫",
+    "eum": [
+      "화",
+      "획"
+    ],
+    "hun": [
+      "그림",
+      "그을"
+    ],
+    "eumhun": "그림 화",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "그림 화ː | 그을 획"
+  },
+  {
+    "id": "g6-074",
+    "hanja": "黃",
+    "eum": [
+      "황"
+    ],
+    "hun": [
+      "누를"
+    ],
+    "eumhun": "누를 황",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "누를 황"
+  },
+  {
+    "id": "g6-075",
+    "hanja": "訓",
+    "eum": [
+      "훈"
+    ],
+    "hun": [
+      "가르칠"
+    ],
+    "eumhun": "가르칠 훈",
+    "grade": "6급",
+    "source": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%ED%95%9C%EC%9E%90%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95%EC%8B%9C%ED%97%98/%EB%B0%B0%EC%A0%95%ED%95%9C%EC%9E%90",
+    "sourceLabel": "가르칠 훈ː"
+  }
+]
