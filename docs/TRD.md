@@ -26,7 +26,7 @@
 | 스타일 | `app/globals.css`의 CSS 사용자 정의 속성과 컴포넌트 클래스 |
 | 데이터 | 저장소에 포함된 검증된 `data/hanja.json` 정적 스냅샷 |
 | 영속화 | 브라우저 `localStorage`; D1/R2 사용 안 함 |
-| 테스트 | 순수 로직·데이터·저장소 단위 테스트, 빌드 결과 스모크 테스트, 브라우저 수동 점검 |
+| 테스트 | 순수 로직·데이터·저장소 단위 테스트, Vitest+RTL 사용자 흐름 테스트, 빌드 결과 스모크 테스트, 브라우저 수동 점검 |
 
 패키지의 정확한 버전은 `package-lock.json`을 진실의 원천으로 삼는다. 제품 코드에 사용하지 않는 starter의 D1 예제와 로딩 스켈레톤은 완성 단계에서 앱 진입 경로와 의존 관계에서 제거한다. `.openai/hosting.json`의 `d1`과 `r2`는 `null`을 유지한다.
 
@@ -68,11 +68,17 @@ data/
 lib/
   types.ts                   # 데이터·게임·저장 타입
   game.ts                    # 필터, 셔플, 매칭·퀴즈 생성
+  session.ts                 # 짝맞추기·퀴즈 세션 상태 전이(순수 함수)
   storage.ts                 # 저장 스키마 검증과 안전한 I/O
 tests/
+  data.test.ts
   game.test.ts
+  session.test.ts
   storage.test.ts
+  app.test.tsx               # Vitest+RTL 사용자 흐름 테스트
+  setup.vitest.ts
   rendered-html.test.mjs
+vitest.config.ts             # 컴포넌트 테스트 전용 구성(vite.config.ts와 분리)
 ```
 
 ## 4. 데이터 계약
@@ -179,6 +185,8 @@ interface MatchSession {
 | 모든 상태 | 같은 카드·matched 카드 선택 | 무시 |
 
 비교 지연은 UI 타이머 효과에서만 처리하고 일치 여부 판정은 순수 함수로 반환한다. 컴포넌트가 사라질 때 타이머를 정리해 이전 라운드에 상태를 쓰지 않게 한다.
+
+위 전이와 퀴즈 전이는 `lib/session.ts`의 순수 함수(`selectMatchCard`, `resolveMatchCheck`, `answerQuizQuestion`, `advanceQuiz`, `summarizeQuiz` 등)로 구현하고 `tests/session.test.ts`에서 단위 테스트한다. `restartMatchSession`/`restartQuizSession`은 같은 카드·문제 구성을 유지한 채 진행 상태만 초기화한다.
 
 ### 5.3 퀴즈 모델
 
@@ -338,7 +346,7 @@ interface ProgressState {
 
 ### 10.2 컴포넌트/사용자 흐름 테스트
 
-Vitest와 jsdom 기반 React Testing Library를 목표 구성으로 사용한다.
+Vitest와 jsdom 기반 React Testing Library를 사용한다(`vitest.config.ts`, `tests/app.test.tsx`, `npm run test:ui`).
 
 - 등급 선택 시 수량과 시작 컨텍스트 변경
 - 키보드로 카드 두 장 선택 후 일치/불일치 피드백
@@ -363,6 +371,7 @@ Vitest와 jsdom 기반 React Testing Library를 목표 구성으로 사용한다
 npm run lint
 npm run typecheck
 npm run test
+npm run test:ui
 npm run build
 ```
 

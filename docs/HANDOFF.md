@@ -25,12 +25,12 @@ npm run dev
 | 영역 | 현재 상태 | 핵심 파일 |
 |---|---|---|
 | 한자 데이터 | 완료 | `data/hanja.json`, `docs/DATA_SPEC.md` |
-| 등급 선택·홈 | 완료 | `components/HanjaApp.tsx` |
-| 카드 짝맞추기 | 완료 | `components/HanjaApp.tsx`, `lib/game.ts` |
-| 4지선다·결과·오답 복습 | 완료 | `components/HanjaApp.tsx`, `lib/game.ts` |
+| 등급 선택·홈·최근 학습 요약 | 완료 | `components/HanjaApp.tsx` |
+| 카드 짝맞추기(같은 카드 재시작 포함) | 완료 | `components/HanjaApp.tsx`, `lib/game.ts`, `lib/session.ts` |
+| 4지선다·결과·오답 복습(같은 문제 재시작 포함) | 완료 | `components/HanjaApp.tsx`, `lib/game.ts`, `lib/session.ts` |
 | 로컬 학습 기록 | 완료 | `lib/storage.ts` |
-| 디자인 토큰·반응형 | 완료 | `app/globals.css`, `docs/DESIGN_SYSTEM.md` |
-| 자동 검증 | 완료 | `tests/`, `package.json` |
+| 디자인 토큰·반응형·포커스 관리 | 완료 | `app/globals.css`, `docs/DESIGN_SYSTEM.md` |
+| 자동 검증(단위 + 사용자 흐름) | 완료 | `tests/`, `vitest.config.ts`, `package.json` |
 | GitHub CI | 완료 | `.github/workflows/ci.yml` |
 
 앱은 별도 라우팅 없이 하나의 클라이언트 화면에서 홈 → 게임 → 결과 상태를 전환한다. 이 구조를 바꿀 경우 새로고침과 정적 호스팅의 동작도 함께 검증한다.
@@ -58,12 +58,12 @@ npm run dev
 4. 데이터·게임·저장소 변경에는 해당 단위 테스트를 추가한다.
 5. `npm run validate`와 브라우저 수동 점검을 완료한 뒤 커밋한다.
 
-권장 우선순위는 다음과 같다.
+P0 작업과 브라우저 QA는 2026-07-11에 모두 완료했다([TASKS.md](./TASKS.md) 7.1 기록 참조). 남은 후보는 다음과 같다.
 
-- 실제 모바일·키보드·저장소 손상 상황의 브라우저 QA 결과를 `TASKS.md`에 반영
-- 완성된 앱의 Open Graph 이미지와 메타데이터 검토
+- 완성된 앱의 Open Graph 이미지와 메타데이터 검토(BASE-006, P1)
 - 배포가 필요해질 때 `.openai/hosting.json`을 유지한 Sites 배포 절차 진행
 - 실제 학생 사용성 피드백을 토대로 문구·난이도 조정
+- 실기기(모바일 터치·화면 읽기 프로그램)에서의 추가 확인
 
 위 항목은 현재 MVP의 작동을 막지 않으며, 요청이 있을 때만 진행한다.
 
@@ -73,7 +73,8 @@ npm run dev
 |---|---|
 | 코드 형식·규칙 | `npm run lint` |
 | 타입 | `npm run typecheck` |
-| 데이터·게임·저장 | `npm run test` |
+| 데이터·게임·세션·저장 | `npm run test` |
+| React 사용자 흐름 | `npm run test:ui` |
 | 배포용 빌드 | `npm run build` |
 | HTML 렌더링 | `npm run test:render` (먼저 build 필요) |
 | 전체 | `npm run validate` |

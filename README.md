@@ -41,17 +41,18 @@ npm run dev
 | `npm run dev` | 로컬 개발 서버 실행 |
 | `npm run lint` | ESLint 검사 |
 | `npm run typecheck` | TypeScript 타입 검사 |
-| `npm run test` | 데이터·게임 로직·저장소 단위 테스트 |
+| `npm run test` | 데이터·게임 로직·세션 전이·저장소 단위 테스트 |
+| `npm run test:ui` | Vitest + React Testing Library 사용자 흐름 테스트 |
 | `npm run build` | Vinext/Cloudflare 호환 프로덕션 빌드 |
 | `npm run test:render` | 빌드 결과의 서버 렌더링 스모크 테스트 |
-| `npm run validate` | lint → typecheck → test → build → 렌더 스모크 테스트 |
+| `npm run validate` | lint → typecheck → test → test:ui → build → 렌더 스모크 테스트 |
 
 ## 기술 구성
 
 - React 19 + TypeScript + Vinext/Vite
 - CSS 사용자 정의 속성을 이용한 디자인 토큰
 - 브라우저 `localStorage` 기반의 로컬 학습 기록
-- Node 내장 테스트 러너와 GitHub Actions CI
+- Node 내장 테스트 러너 + Vitest/RTL, GitHub Actions CI
 
 ## 주요 디렉터리
 
@@ -59,8 +60,8 @@ npm run dev
 app/           페이지 셸과 전역 스타일
 components/    화면 상태와 게임 UI
 data/          검증된 한자 200자 JSON
-lib/           타입, 게임 생성·검증, 저장소 로직
-tests/         데이터·로직·저장소·렌더링 테스트
+lib/           타입, 게임 생성·검증, 세션 전이, 저장소 로직
+tests/         데이터·로직·세션·저장소·사용자 흐름·렌더링 테스트
 docs/          PRD, TRD, 디자인, 데이터, 인수인계 문서
 ```
 

@@ -25,6 +25,8 @@ jobs:
         run: npm run typecheck
       - name: 단위 테스트
         run: npm run test
+      - name: 사용자 흐름 테스트
+        run: npm run test:ui
       - name: 프로덕션 빌드
         run: npm run build
       - name: 렌더 스모크 테스트

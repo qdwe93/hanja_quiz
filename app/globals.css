@@ -612,6 +612,29 @@ main {
   font-size: 12px;
 }
 
+.progress-recent {
+  display: grid;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.progress-recent p {
+  font-size: 14px;
+}
+
+.progress-recent strong {
+  color: #ffffff;
+}
+
+.progress-empty {
+  min-width: 220px;
+  max-width: 320px;
+  padding: 20px 24px;
+  border: 1px dashed #5a5a5a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .learning-page {
   min-height: calc(100vh - 104px);
   padding: 40px 0 72px;
