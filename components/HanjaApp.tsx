@@ -64,7 +64,6 @@ export function HanjaApp({ entries }: HanjaAppProps) {
     () => filterByStudySet(entries, selectedStudySet),
     [entries, selectedStudySet],
   );
-  const sampleEntry = selectedEntries[0] ?? entries[0];
 
   useEffect(() => {
     const restoreTimer = window.setTimeout(() => {
@@ -311,7 +310,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       <main id="main-content">
         {screen === "home" && (
           <HomeScreen
-            sampleEntry={sampleEntry}
+            previewEntries={selectedEntries}
             selectedStudySet={selectedStudySet}
             selectedCount={selectedEntries.length}
             progress={progress}
@@ -379,7 +378,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
 }
 
 interface HomeScreenProps {
-  sampleEntry: HanjaEntry | undefined;
+  previewEntries: HanjaEntry[];
   selectedStudySet: StudySetId;
   selectedCount: number;
   progress: ProgressState;
@@ -390,7 +389,7 @@ interface HomeScreenProps {
 }
 
 function HomeScreen({
-  sampleEntry,
+  previewEntries,
   selectedStudySet,
   selectedCount,
   progress,
@@ -399,6 +398,7 @@ function HomeScreen({
   onStartMatching,
   onStartQuiz,
 }: HomeScreenProps) {
+  const [showReadings, setShowReadings] = useState(false);
   const latestRecord = progress.recentRecords[0];
   const latestQuizRecord = progress.recentRecords.find(
     (record) => record.mode === "quiz",
@@ -443,19 +443,38 @@ function HomeScreen({
             </p>
           </div>
 
-          <div className="hero-sample-wrap" aria-hidden="true">
-            <div className="hero-sample">
-              <div className="hero-sample__topline">
-                <span className="hero-sample__dot" /> 오늘의 한자 미리보기
+          <div className="hero-sample-wrap">
+            <section
+              className="hero-sample"
+              aria-labelledby="study-set-preview-title"
+            >
+              <div className="hero-sample__topline" id="study-set-preview-title">
+                <span className="hero-sample__dot" /> 한자 목록 ({selectedStudySet})
               </div>
-              <div className="hero-sample__hanja">
-                {sampleEntry?.hanja ?? "學"}
-              </div>
-              <p className="hero-sample__answer">
-                {sampleEntry?.eumhun ?? "배울 학"}
-              </p>
-              <p className="hero-sample__hint">한자와 음훈을 함께 기억해요</p>
-            </div>
+              <button
+                className="hero-sample__toggle"
+                type="button"
+                aria-pressed={showReadings}
+                aria-label={
+                  showReadings
+                    ? "漢字/음훈 전환, 현재 음훈 보기"
+                    : "漢字/음훈 전환, 현재 한자 보기"
+                }
+                onClick={() => setShowReadings((current) => !current)}
+              >
+                漢字/음훈 전환
+              </button>
+              <ul
+                className={`hero-sample__grid ${showReadings ? "hero-sample__grid--readings" : ""}`}
+                aria-label={`${selectedStudySet} ${showReadings ? "음훈" : "한자"} 목록`}
+              >
+                {previewEntries.map((entry) => (
+                  <li className="hero-sample__cell" key={entry.id}>
+                    {showReadings ? entry.eumhun : entry.hanja}
+                  </li>
+                ))}
+              </ul>
+            </section>
           </div>
         </div>
       </section>

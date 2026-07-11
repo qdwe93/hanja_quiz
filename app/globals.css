@@ -378,11 +378,7 @@ main {
 .hero-sample {
   position: relative;
   min-height: 430px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 36px;
+  padding: 78px 24px 24px;
   border: 1px solid var(--color-fog);
   border-radius: var(--radius-panel);
   background: white;
@@ -407,25 +403,60 @@ main {
   background: var(--color-primary);
 }
 
-.hero-sample__hanja {
-  margin: 8px 0 4px;
-  font-family: var(--font-hanja);
-  font-size: clamp(100px, 12vw, 150px);
-  font-weight: 500;
-  line-height: 1;
-}
-
-.hero-sample__answer {
-  margin: 14px 0 0;
+.hero-sample__toggle {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  min-height: 44px;
+  padding: 6px 9px;
+  border: 1px solid var(--color-steel);
+  border-radius: 6px;
+  background: white;
   color: var(--color-primary);
-  font-size: 22px;
+  font-size: 12px;
   font-weight: 800;
 }
 
-.hero-sample__hint {
-  margin: 8px 0 0;
-  color: var(--color-graphite);
-  font-size: 14px;
+.hero-sample__toggle[aria-pressed="true"] {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.hero-sample__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  height: 100%;
+  min-height: 328px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-sample__cell {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border: 1px solid var(--color-fog);
+  border-radius: 7px;
+  background: var(--color-cloud);
+  color: var(--color-primary);
+  font-family: var(--font-hanja);
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.hero-sample__grid--readings .hero-sample__cell {
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: clamp(9px, 1.15vw, 13px);
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .modes-section {
@@ -1159,6 +1190,20 @@ main {
 
   .hero-sample {
     min-height: 330px;
+    padding: 72px 16px 16px;
+  }
+
+  .hero-sample__grid {
+    min-height: 242px;
+    gap: 5px;
+  }
+
+  .hero-sample__cell {
+    font-size: clamp(20px, 6vw, 30px);
+  }
+
+  .hero-sample__grid--readings .hero-sample__cell {
+    font-size: clamp(8px, 2.3vw, 12px);
   }
 
   .modes-section,
