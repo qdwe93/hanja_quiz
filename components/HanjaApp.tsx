@@ -481,7 +481,7 @@ function HomeScreen({
                 <div className="mode-card__number">1</div>
                 <h3>짝맞추기</h3>
                 <p>
-                  앞면으로 보이는 카드 열 장에서 한자와 알맞은 음훈을 찾아
+                  앞면으로 보이는 카드 열두 장에서 한자와 알맞은 음훈을 찾아
                   25쌍을 완성해요.
                 </p>
                 <button
@@ -583,7 +583,7 @@ interface MatchingScreenProps {
 }
 
 function MatchingScreen({ session, onBack, onSelect }: MatchingScreenProps) {
-  const { cards, faceUpIds, matchedPairIds, attempts, totalPairs, studySet, phase } = session;
+  const { cards, slots, faceUpIds, matchedPairIds, attempts, totalPairs, studySet, phase } = session;
   const gridRef = useRef<HTMLDivElement | null>(null);
   const matchedCount = matchedPairIds.length;
   const progressPercent = totalPairs ? (matchedCount / totalPairs) * 100 : 0;
@@ -622,7 +622,10 @@ function MatchingScreen({ session, onBack, onSelect }: MatchingScreenProps) {
         {cards.length ? (
           <div className="game-panel">
             <div className="match-grid" ref={gridRef}>
-              {cards.map((card) => {
+              {slots.map((card, slotIndex) => {
+                if (!card) {
+                  return <div className="match-card match-card--empty" data-testid={`match-slot-${slotIndex}`} key={`slot-${slotIndex}`} aria-hidden="true" />;
+                }
                 const isSelected = faceUpIds.includes(card.id);
                 const state = isSelected && phase === "checking"
                   ? checkingMatched ? "correct" : "wrong"
@@ -631,12 +634,13 @@ function MatchingScreen({ session, onBack, onSelect }: MatchingScreenProps) {
 
                 return (
                   <button
-                    key={card.id}
+                    key={`slot-${slotIndex}`}
                     className={`match-card ${state === "wrong" ? "shake-effect" : ""}`}
                     type="button"
                     aria-label={label}
                     aria-pressed={isSelected}
                     data-state={state}
+                    data-slot={slotIndex}
                     data-testid={`match-card-${card.id}`}
                     disabled={phase === "checking"}
                     onClick={() => onSelect(card)}
@@ -650,7 +654,7 @@ function MatchingScreen({ session, onBack, onSelect }: MatchingScreenProps) {
                 );
               })}
             </div>
-            <p className="game-help">화면에는 한자 5장과 음훈 5장이 보입니다. 틀린 선택은 1초 뒤 다시 고를 수 있어요.</p>
+            <p className="game-help">화면에는 한자 6장과 음훈 6장이 보입니다. 첫 번째로 고른 카드를 다시 누르면 선택을 취소할 수 있어요.</p>
           </div>
         ) : (
           <EmptyState onHome={onBack} />

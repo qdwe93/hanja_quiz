@@ -65,20 +65,25 @@ test("홈은 여덟 개의 25자 세트 선택기를 제공하고 선택한 세�
   expect(stored.selectedStudySet).toBe("6급-3");
 });
 
-test("짝맞추기는 앞면 열 장을 보여 주고 오답 흔들기와 정답 카드 교체를 수행한다", async () => {
+test("짝맞추기는 앞면 열두 장을 보여 주고 선택 취소·오답 피드백·고정 슬롯 교체를 수행한다", async () => {
   const user = userEvent.setup();
   render(<HanjaApp entries={entries} />);
   await user.click(screen.getByTestId("start-matching"));
   await screen.findByTestId("matching-screen");
 
   const initialCards = screen.getAllByTestId(/^match-card-/) as HTMLButtonElement[];
-  expect(initialCards).toHaveLength(10);
+  expect(initialCards).toHaveLength(12);
   expect(initialCards.every((card) => card.getAttribute("aria-label")?.startsWith("카드: "))).toBe(true);
   const groups = activeMatchGroups();
   const pair = [...groups.values()].find((cards) => cards.length === 2);
   const outsider = [...groups.entries()].find(([entryId]) => entryId !== [...groups.entries()].find(([, cards]) => cards === pair)?.[0])?.[1][0];
   expect(pair).toBeTruthy();
   expect(outsider).toBeTruthy();
+
+  await user.click(pair?.[0] as HTMLButtonElement);
+  expect(pair?.[0].getAttribute("data-state")).toBe("selected");
+  await user.click(pair?.[0] as HTMLButtonElement);
+  expect(pair?.[0].getAttribute("data-state")).toBe("idle");
 
   await user.click(pair?.[0] as HTMLButtonElement);
   await user.click(outsider as HTMLButtonElement);
@@ -89,13 +94,20 @@ test("짝맞추기는 앞면 열 장을 보여 주고 오답 흔들기와 정답
   const freshGroups = activeMatchGroups();
   const correctPair = [...freshGroups.values()].find((cards) => cards.length === 2);
   expect(correctPair).toBeTruthy();
-  const removedId = correctPair?.[0].dataset.testid;
+  const replacedIds = new Set(correctPair?.map((card) => card.dataset.testid));
+  const stableCardSlots = new Map(
+    (screen.getAllByTestId(/^match-card-/) as HTMLButtonElement[])
+      .filter((card) => !replacedIds.has(card.dataset.testid))
+      .map((card) => [card.dataset.testid, card.dataset.slot]),
+  );
   await user.click(correctPair?.[0] as HTMLButtonElement);
   await user.click(correctPair?.[1] as HTMLButtonElement);
   expect(correctPair?.[0].getAttribute("data-state")).toBe("correct");
   await waitFor(() => {
-    expect(screen.getAllByTestId(/^match-card-/)).toHaveLength(10);
-    expect(screen.queryByTestId(removedId ?? "")).toBeNull();
+    expect(screen.getAllByTestId(/^match-card-/)).toHaveLength(12);
+    stableCardSlots.forEach((slot, testId) => {
+      expect(screen.getByTestId(testId ?? "").getAttribute("data-slot")).toBe(slot);
+    });
   }, { timeout: 1500 });
 });
 
@@ -123,6 +135,12 @@ test("퀴즈는 숫자 1~4 키로 응답하고 오답은 재선택, 정답은 �
   await user.keyboard(String(correctIndex + 1));
   expect(choices[correctIndex].getAttribute("data-state")).toBe("correct");
   await waitFor(() => expect(screen.getByText("2/25")).toBeTruthy(), { timeout: 1500 });
+  const nextHanja = screen.getByTestId("quiz-hanja").textContent ?? "";
+  const nextEntry = entryByHanja.get(nextHanja);
+  const nextCorrectIndex = [0, 1, 2, 3].findIndex((index) =>
+    (screen.getByTestId(`quiz-choice-${index}`) as HTMLButtonElement).textContent?.includes(nextEntry?.eumhun ?? ""),
+  );
+  expect(nextCorrectIndex).not.toBe(correctIndex);
 });
 
 test("손상된 저장값에서도 홈이 기본 상태로 렌더된다", async () => {

@@ -746,6 +746,13 @@ main {
   opacity: 1;
 }
 
+.match-card--empty {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
+}
+
 .match-card[data-state="selected"] {
   border: 2px solid var(--color-primary);
   background: var(--color-primary-soft);

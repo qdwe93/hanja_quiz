@@ -18,12 +18,15 @@ export type MatchPhase = "playing" | "checking" | "complete";
 
 export interface MatchSession {
   studySet: StudySetId;
-  /** 현재 화면에 보이는 카드입니다. 정상 구간에서는 항상 열 장입니다. */
+  /** 현재 화면에 보이는 카드입니다. 정상 구간에서는 항상 열두 장입니다. */
   cards: MatchCard[];
+  /** 카드 위치를 고정하기 위한 열두 개의 화면 슬롯입니다. */
+  slots: Array<MatchCard | null>;
   /** 아직 화면에 공급되지 않은 카드입니다. */
   pendingCards: MatchCard[];
   /** 같은 카드 다시 하기를 위한 최초 카드 배치입니다. */
   initialCards: MatchCard[];
+  initialSlots: Array<MatchCard | null>;
   initialPendingCards: MatchCard[];
   /** 현재 선택한 카드 ID이며 비교 중에는 두 개입니다. */
   faceUpIds: string[];
@@ -102,8 +105,10 @@ export function createMatchSession(
   return {
     studySet,
     cards,
+    slots: cards,
     pendingCards,
     initialCards: cards,
+    initialSlots: cards,
     initialPendingCards: pendingCards,
     faceUpIds: [],
     matchedPairIds: [],
@@ -120,6 +125,7 @@ export function restartMatchSession(session: MatchSession): MatchSession {
   return {
     ...session,
     cards: [...session.initialCards],
+    slots: [...session.initialSlots],
     pendingCards: [...session.initialPendingCards],
     faceUpIds: [],
     matchedPairIds: [],
@@ -143,8 +149,14 @@ export function selectMatchCard(
   }
 
   const card = session.cards.find((item) => item.id === cardId);
-  if (!card || session.faceUpIds.includes(card.id)) {
+  if (!card) {
     return session;
+  }
+
+  if (session.faceUpIds.includes(card.id)) {
+    return session.faceUpIds.length === 1
+      ? { ...session, faceUpIds: [] }
+      : session;
   }
 
   if (session.faceUpIds.length === 0) {
@@ -179,7 +191,7 @@ export function isCheckingPairMatched(session: MatchSession): boolean {
 /**
  * 비교를 완료합니다.
  * - 오답은 두 항목을 복습 목록에 보관하고 선택만 해제합니다.
- * - 정답은 두 카드를 제거한 뒤, 대기 풀이 다섯 장 이상이면 3쌍+4장 구성을
+ * - 정답은 두 카드를 제거한 뒤, 대기 풀이 다섯 장 이상이면 4쌍+4장 구성을
  *   복원하고, 네 장 이하면 한자·음훈 한 장씩 임의 공급합니다.
  */
 export function resolveMatchCheck(
@@ -206,14 +218,19 @@ export function resolveMatchCheck(
   const matchedPairId = session.cards.find(
     (card) => card.id === session.faceUpIds[0],
   )?.pairId;
-  const remainingCards = session.cards.filter(
-    (card) => !session.faceUpIds.includes(card.id),
+  const remainingSlots = session.slots.map((card) =>
+    card && session.faceUpIds.includes(card.id) ? null : card,
   );
-  const { cards, pendingCards } = replenishMatchCards(
+  const remainingCards = remainingSlots.filter(
+    (card): card is MatchCard => card !== null,
+  );
+  const { additions, pendingCards } = selectReplacementCards(
     remainingCards,
     session.pendingCards,
     rng,
   );
+  const slots = fillEmptySlots(remainingSlots, additions);
+  const cards = slots.filter((card): card is MatchCard => card !== null);
   const matchedPairIds = matchedPairId
     ? [...session.matchedPairIds, matchedPairId]
     : session.matchedPairIds;
@@ -221,6 +238,7 @@ export function resolveMatchCheck(
   return {
     ...session,
     cards,
+    slots,
     pendingCards,
     faceUpIds: [],
     matchedPairIds,
@@ -349,7 +367,7 @@ function createInitialMatchLayout(
   rng: RandomSource,
 ): { cards: MatchCard[]; pendingCards: MatchCard[] } {
   const pairIds = [...new Set(deck.map((card) => card.pairId))];
-  if (deck.length < MATCH_VISIBLE_CARD_COUNT || pairIds.length < 7) {
+  if (deck.length < MATCH_VISIBLE_CARD_COUNT || pairIds.length < 8) {
     return { cards: shuffle(deck, rng), pendingCards: [] };
   }
 
@@ -357,10 +375,11 @@ function createInitialMatchLayout(
     ...cardsForPair(deck, pairIds[0]),
     ...cardsForPair(deck, pairIds[1]),
     ...cardsForPair(deck, pairIds[2]),
-    cardForPair(deck, pairIds[3], "hanja"),
+    ...cardsForPair(deck, pairIds[3]),
     cardForPair(deck, pairIds[4], "hanja"),
-    cardForPair(deck, pairIds[5], "eumhun"),
+    cardForPair(deck, pairIds[5], "hanja"),
     cardForPair(deck, pairIds[6], "eumhun"),
+    cardForPair(deck, pairIds[7], "eumhun"),
   ];
   const initialIds = new Set(initialCards.map((card) => card.id));
 
@@ -370,19 +389,19 @@ function createInitialMatchLayout(
   };
 }
 
-function replenishMatchCards(
+function selectReplacementCards(
   remainingCards: readonly MatchCard[],
   pendingCards: readonly MatchCard[],
   rng: RandomSource,
-): { cards: MatchCard[]; pendingCards: MatchCard[] } {
+): { additions: MatchCard[]; pendingCards: MatchCard[] } {
   if (pendingCards.length === 0) {
-    return { cards: [...remainingCards], pendingCards: [] };
+    return { additions: [], pendingCards: [] };
   }
 
   if (pendingCards.length <= 4) {
     const additions = takeBalancedCards(pendingCards, rng);
     return {
-      cards: shuffle([...remainingCards, ...additions], rng),
+      additions,
       pendingCards: pendingCards.filter(
         (card) => !additions.some((addition) => addition.id === card.id),
       ),
@@ -408,7 +427,7 @@ function replenishMatchCards(
   if (!target || !matchingCard) {
     const additions = takeBalancedCards(pendingCards, rng);
     return {
-      cards: shuffle([...remainingCards, ...additions], rng),
+      additions,
       pendingCards: pendingCards.filter(
         (card) => !additions.some((addition) => addition.id === card.id),
       ),
@@ -429,7 +448,7 @@ function replenishMatchCards(
   if (!freshCard) {
     const additions = takeBalancedCards(pendingCards, rng);
     return {
-      cards: shuffle([...remainingCards, ...additions], rng),
+      additions,
       pendingCards: pendingCards.filter(
         (card) => !additions.some((addition) => addition.id === card.id),
       ),
@@ -438,11 +457,26 @@ function replenishMatchCards(
 
   const additions = [matchingCard, freshCard];
   return {
-    cards: shuffle([...remainingCards, ...additions], rng),
+    additions,
     pendingCards: pendingCards.filter(
       (card) => !additions.some((addition) => addition.id === card.id),
     ),
   };
+}
+
+function fillEmptySlots(
+  slots: readonly (MatchCard | null)[],
+  additions: readonly MatchCard[],
+): Array<MatchCard | null> {
+  let additionIndex = 0;
+  return slots.map((card) => {
+    if (card !== null || additionIndex >= additions.length) {
+      return card;
+    }
+    const addition = additions[additionIndex];
+    additionIndex += 1;
+    return addition;
+  });
 }
 
 function takeBalancedCards(

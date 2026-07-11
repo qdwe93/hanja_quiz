@@ -8,7 +8,7 @@ import type {
 } from "./types.ts";
 import { DEFAULT_STUDY_SET, STUDY_SETS } from "./types.ts";
 
-export const MATCH_VISIBLE_CARD_COUNT = 10;
+export const MATCH_VISIBLE_CARD_COUNT = 12;
 export const QUIZ_QUESTION_COUNT = 25;
 
 export interface MatchingOptions {
@@ -137,7 +137,7 @@ export function createQuizQuestions(
   const questionCount = Math.min(count, eligibleEntries.length);
   const selectedEntries = shuffle(eligibleEntries, rng).slice(0, questionCount);
 
-  return selectedEntries.map((entry) => {
+  const questions = selectedEntries.map((entry) => {
     const distractors = shuffle(
       findDistractorEntries(entry, availableEntries),
       rng,
@@ -156,6 +156,40 @@ export function createQuizQuestions(
       entry,
     };
   });
+
+  return preventRepeatedCorrectIndexes(questions, rng);
+}
+
+/** 바로 앞 문제와 같은 번호에 정답이 오지 않도록 보기 순서만 바꿉니다. */
+function preventRepeatedCorrectIndexes(
+  questions: readonly QuizQuestion[],
+  rng: RandomSource,
+): QuizQuestion[] {
+  return questions.reduce<QuizQuestion[]>((result, question) => {
+    const previous = result.at(-1);
+    if (!previous || previous.correctIndex !== question.correctIndex) {
+      return [...result, question];
+    }
+
+    const nextCorrectIndex = shuffle(
+      [0, 1, 2, 3].filter((index) => index !== previous.correctIndex),
+      rng,
+    )[0];
+    const choices = [...question.choices];
+    [choices[question.correctIndex], choices[nextCorrectIndex]] = [
+      choices[nextCorrectIndex],
+      choices[question.correctIndex],
+    ];
+
+    return [
+      ...result,
+      {
+        ...question,
+        choices,
+        correctIndex: nextCorrectIndex,
+      },
+    ];
+  }, []);
 }
 
 function uniqueEntries(entries: readonly HanjaEntry[]): HanjaEntry[] {

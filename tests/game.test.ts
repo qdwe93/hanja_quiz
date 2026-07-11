@@ -105,6 +105,9 @@ test("퀴즈는 세트의 25문제를 만들고 보기 네 개 중 정답이 정
     assert.equal(question.choices[question.correctIndex], question.correctAnswer);
   }
   assert.ok(new Set(questions.map((question) => question.correctIndex)).size > 1);
+  questions.slice(1).forEach((question, index) => {
+    assert.notEqual(question.correctIndex, questions[index].correctIndex);
+  });
 });
 
 test("복수 훈음 중 하나라도 정답과 겹치는 후보는 오답에서 제외한다", () => {
