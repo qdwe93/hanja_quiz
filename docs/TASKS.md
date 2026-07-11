@@ -1,7 +1,7 @@
 # 한자랑 작업 정의서
 
 > 최종 갱신: 2026-07-11
-> 상태: P0 전체 완료 — 배포와 P1/P2 항목은 요청이 있을 때 진행
+> 상태: 배포 완료 및 P0 전체 완료 (GitHub Pages 배포 및 접속 확인 완료)
 
 ## 상태와 우선순위
 
@@ -228,6 +228,10 @@
 - [x] **CI-001 · P0** — GitHub Actions 구성
   선행: QA-004
   완료 조건: `npm ci → lint → typecheck → test → build`가 main/PR에서 실행되고 성공함.
+
+- [x] **DEPLOY-001 · P0** — GitHub Pages 실서버 배포 및 접속 확인
+  선행: CI-001
+  완료 조건: GitHub Actions를 통한 Pages 배포 성공 및 실서버(https://qdwe93.github.io/hanja_quiz/) 접속(홈 렌더, 짝맞추기·퀴즈 시작, 새로고침) 수동 검증 완료.
 
 - [x] **GIT-001 · P0** — 원격 이력과 브랜치 안전 확인
   선행: 없음
