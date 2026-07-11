@@ -1,9 +1,10 @@
 import type {
-  GradeFilter,
   ProgressRecord,
   ProgressState,
   StudyMode,
-} from "./types";
+  StudySetId,
+} from "./types.ts";
+import { DEFAULT_STUDY_SET, STUDY_SETS } from "./types.ts";
 
 export const PROGRESS_STORAGE_KEY = "hanja-learning:progress:v1";
 
@@ -15,7 +16,7 @@ export interface StorageLike {
 export function createDefaultProgress(): ProgressState {
   return {
     version: 1,
-    selectedGrade: "전체",
+    selectedStudySet: DEFAULT_STUDY_SET,
     matching: {
       completedGames: 0,
       matchedPairs: 0,
@@ -62,9 +63,10 @@ export function parseProgress(input: unknown): ProgressState {
 
   return {
     version: 1,
-    selectedGrade: isGradeFilter(candidate.selectedGrade)
-      ? candidate.selectedGrade
-      : defaults.selectedGrade,
+    selectedStudySet:
+      studySetFromValue(candidate.selectedStudySet) ??
+      legacyGradeToStudySet(candidate.selectedGrade) ??
+      defaults.selectedStudySet,
     matching: {
       completedGames: readNonNegativeInteger(
         matching.completedGames,
@@ -124,12 +126,12 @@ export function saveProgress(
   return normalized;
 }
 
-export function setSelectedGrade(
+export function setSelectedStudySet(
   progress: ProgressState,
-  selectedGrade: GradeFilter,
+  selectedStudySet: StudySetId,
 ): ProgressState {
   const normalized = parseProgress(progress);
-  return { ...normalized, selectedGrade };
+  return { ...normalized, selectedStudySet };
 }
 
 /**
@@ -176,7 +178,7 @@ function parseRecord(value: unknown): ProgressRecord | null {
     typeof value.id !== "string" ||
     value.id.trim() === "" ||
     !isStudyMode(value.mode) ||
-    !isGradeFilter(value.grade) ||
+    !(studySetFromValue(value.studySet) ?? legacyGradeToStudySet(value.grade)) ||
     typeof value.completedAt !== "string" ||
     !Number.isFinite(Date.parse(value.completedAt)) ||
     !isNonNegativeInteger(value.correct) ||
@@ -189,7 +191,10 @@ function parseRecord(value: unknown): ProgressRecord | null {
   return {
     id: value.id,
     mode: value.mode,
-    grade: value.grade,
+    studySet:
+      studySetFromValue(value.studySet) ??
+      legacyGradeToStudySet(value.grade) ??
+      DEFAULT_STUDY_SET,
     completedAt: value.completedAt,
     correct: value.correct,
     total: value.total,
@@ -214,8 +219,17 @@ function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function isGradeFilter(value: unknown): value is GradeFilter {
-  return value === "전체" || value === "7급" || value === "준6급" || value === "6급";
+function studySetFromValue(value: unknown): StudySetId | null {
+  return typeof value === "string" && STUDY_SETS.some((item) => item.id === value)
+    ? (value as StudySetId)
+    : null;
+}
+
+function legacyGradeToStudySet(value: unknown): StudySetId | null {
+  if (value === "7급") return "7급-1";
+  if (value === "준6급") return "준6급-1";
+  if (value === "6급") return "6급-1";
+  return null;
 }
 
 function isStudyMode(value: unknown): value is StudyMode {

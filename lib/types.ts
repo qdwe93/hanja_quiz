@@ -1,11 +1,42 @@
 /** 학습 데이터에서 사용할 수 있는 급수입니다. */
 export type HanjaGrade = "7급" | "준6급" | "6급";
 
-/** 시작 화면에서 선택할 수 있는 학습 범위입니다. */
-export type GradeFilter = HanjaGrade | "전체";
-
 export const HANJA_GRADES = ["7급", "준6급", "6급"] as const;
-export const GRADE_FILTERS = ["전체", ...HANJA_GRADES] as const;
+
+/** 25자 단위로 나눈 학습 세트의 식별자입니다. */
+export type StudySetId =
+  | "7급-1"
+  | "7급-2"
+  | "준6급-1"
+  | "준6급-2"
+  | "준6급-3"
+  | "6급-1"
+  | "6급-2"
+  | "6급-3";
+
+export interface StudySet {
+  id: StudySetId;
+  grade: HanjaGrade;
+  setNumber: number;
+  /** 해당 급수 안에서의 0부터 시작하는 인덱스입니다. */
+  startIndex: number;
+  /** 끝 인덱스는 포함하지 않습니다. */
+  endIndex: number;
+  label: string;
+}
+
+export const STUDY_SETS: readonly StudySet[] = [
+  { id: "7급-1", grade: "7급", setNumber: 1, startIndex: 0, endIndex: 25, label: "7급 1세트" },
+  { id: "7급-2", grade: "7급", setNumber: 2, startIndex: 25, endIndex: 50, label: "7급 2세트" },
+  { id: "준6급-1", grade: "준6급", setNumber: 1, startIndex: 0, endIndex: 25, label: "준6급 1세트" },
+  { id: "준6급-2", grade: "준6급", setNumber: 2, startIndex: 25, endIndex: 50, label: "준6급 2세트" },
+  { id: "준6급-3", grade: "준6급", setNumber: 3, startIndex: 50, endIndex: 75, label: "준6급 3세트" },
+  { id: "6급-1", grade: "6급", setNumber: 1, startIndex: 0, endIndex: 25, label: "6급 1세트" },
+  { id: "6급-2", grade: "6급", setNumber: 2, startIndex: 25, endIndex: 50, label: "6급 2세트" },
+  { id: "6급-3", grade: "6급", setNumber: 3, startIndex: 50, endIndex: 75, label: "6급 3세트" },
+] as const;
+
+export const DEFAULT_STUDY_SET: StudySetId = "7급-1";
 
 /** data/hanja.json 한 항목의 정규화된 형태입니다. */
 export interface HanjaEntry {
@@ -53,7 +84,7 @@ export type StudyMode = "matching" | "quiz";
 export interface ProgressRecord {
   id: string;
   mode: StudyMode;
-  grade: GradeFilter;
+  studySet: StudySetId;
   /** ISO 8601 형식의 완료 시각입니다. */
   completedAt: string;
   correct: number;
@@ -62,7 +93,7 @@ export interface ProgressRecord {
 
 export interface ProgressState {
   version: 1;
-  selectedGrade: GradeFilter;
+  selectedStudySet: StudySetId;
   matching: {
     completedGames: number;
     matchedPairs: number;

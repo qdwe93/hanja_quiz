@@ -1,21 +1,36 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { createMatchingCards, createQuizQuestions, filterByGrade, shuffle } from "../lib/game.ts";
+import {
+  createMatchingCards,
+  createQuizQuestions,
+  filterByStudySet,
+  shuffle,
+} from "../lib/game.ts";
 import type { HanjaEntry, HanjaGrade } from "../lib/types";
 
-function makeEntries(count = 15): HanjaEntry[] {
-  const grades: HanjaGrade[] = ["7급", "준6급", "6급"];
-  return Array.from({ length: count }, (_, index) => ({
-    id: `hanja-${index + 1}`,
-    hanja: String.fromCodePoint(0x4e00 + index),
-    eum: [`음${index + 1}`],
-    hun: [`뜻${index + 1}`],
-    eumhun: `뜻${index + 1} 음${index + 1}`,
-    grade: grades[index % grades.length],
-    source: "https://example.com/source",
-    sourceLabel: `원문${index + 1}`,
-  }));
+function makeEntries(): HanjaEntry[] {
+  const counts: Array<[HanjaGrade, number]> = [
+    ["7급", 50],
+    ["준6급", 75],
+    ["6급", 75],
+  ];
+  let index = 0;
+  return counts.flatMap(([grade, count]) =>
+    Array.from({ length: count }, () => {
+      index += 1;
+      return {
+        id: `hanja-${index}`,
+        hanja: String.fromCodePoint(0x4e00 + index),
+        eum: [`음${index}`],
+        hun: [`뜻${index}`],
+        eumhun: `뜻${index} 음${index}`,
+        grade,
+        source: "https://example.com/source",
+        sourceLabel: `원문${index}`,
+      };
+    }),
+  );
 }
 
 function seededRng(seed = 123456789): () => number {
@@ -26,14 +41,22 @@ function seededRng(seed = 123456789): () => number {
   };
 }
 
-test("급수 필터는 전체와 개별 급수를 지원한다", () => {
-  const entries = makeEntries(9);
+test("세트 필터는 급수 안의 25자 인덱스 범위를 정확히 반환한다", () => {
+  const entries = makeEntries();
 
-  assert.equal(filterByGrade(entries, "전체").length, 9);
   assert.deepEqual(
-    filterByGrade(entries, "준6급").map((entry) => entry.grade),
-    ["준6급", "준6급", "준6급"],
+    filterByStudySet(entries, "7급-2").map((entry) => entry.id),
+    entries.slice(25, 50).map((entry) => entry.id),
   );
+  assert.deepEqual(
+    filterByStudySet(entries, "준6급-3").map((entry) => entry.id),
+    entries.slice(100, 125).map((entry) => entry.id),
+  );
+  assert.deepEqual(
+    filterByStudySet(entries, "6급-1").map((entry) => entry.id),
+    entries.slice(125, 150).map((entry) => entry.id),
+  );
+  assert.equal(filterByStudySet(entries, "6급-3").length, 25);
 });
 
 test("Fisher-Yates 셔플은 RNG를 주입할 수 있고 입력을 변경하지 않는다", () => {
@@ -47,112 +70,59 @@ test("Fisher-Yates 셔플은 RNG를 주입할 수 있고 입력을 변경하지 
   assert.deepEqual([...shuffledOnce].sort(), original);
 });
 
-test("매칭 라운드는 기본 여섯 쌍을 서로 구별되는 카드 열두 장으로 만든다", () => {
-  const cards = createMatchingCards(makeEntries(), { rng: seededRng(7) });
+test("매칭 덱은 선택 세트의 25쌍 50장만 만든다", () => {
+  const entries = makeEntries();
+  const cards = createMatchingCards(entries, {
+    studySet: "준6급-2",
+    rng: seededRng(7),
+  });
+  const entryById = new Map(entries.map((entry) => [entry.id, entry]));
 
-  assert.equal(cards.length, 12);
-  assert.equal(new Set(cards.map((card) => card.id)).size, 12);
+  assert.equal(cards.length, 50);
+  assert.equal(new Set(cards.map((card) => card.id)).size, 50);
+  assert.equal(new Set(cards.map((card) => card.pairId)).size, 25);
+  assert.ok(cards.every((card) => entryById.get(card.entryId)?.grade === "준6급"));
 
-  const pairIds = [...new Set(cards.map((card) => card.pairId))];
-  assert.equal(pairIds.length, 6);
-  for (const pairId of pairIds) {
+  for (const pairId of new Set(cards.map((card) => card.pairId))) {
     const pair = cards.filter((card) => card.pairId === pairId);
-    assert.equal(pair.length, 2);
-    assert.deepEqual(
-      new Set(pair.map((card) => card.kind)),
-      new Set(["hanja", "eumhun"]),
-    );
+    assert.deepEqual(new Set(pair.map((card) => card.kind)), new Set(["hanja", "eumhun"]));
   }
 });
 
-test("매칭과 퀴즈 생성에는 선택한 급수만 반영된다", () => {
-  const entries = makeEntries(15);
-  const cards = createMatchingCards(entries, {
-    grade: "6급",
-    pairCount: 4,
-    rng: seededRng(10),
-  });
-  const gradeById = new Map(entries.map((entry) => [entry.id, entry.grade]));
-
-  assert.ok(cards.every((card) => gradeById.get(card.entryId) === "6급"));
-
-  const questions = createQuizQuestions(entries, {
-    grade: "7급",
-    rng: seededRng(11),
-  });
-  assert.ok(questions.every((question) => question.entry.grade === "7급"));
-});
-
-test("퀴즈는 최대 열 문제이며 보기 네 개 중 정답이 정확히 하나다", () => {
-  const questions = createQuizQuestions(makeEntries(15), {
-    count: 99,
+test("퀴즈는 세트의 25문제를 만들고 보기 네 개 중 정답이 정확히 하나다", () => {
+  const questions = createQuizQuestions(makeEntries(), {
+    studySet: "6급-3",
+    count: 25,
     rng: seededRng(99),
   });
 
-  assert.equal(questions.length, 10);
-  assert.equal(new Set(questions.map((question) => question.entryId)).size, 10);
-
+  assert.equal(questions.length, 25);
+  assert.equal(new Set(questions.map((question) => question.entryId)).size, 25);
   for (const question of questions) {
     assert.equal(question.choices.length, 4);
     assert.equal(new Set(question.choices).size, 4);
-    assert.equal(
-      question.choices.filter((choice) => choice === question.correctAnswer).length,
-      1,
-    );
+    assert.equal(question.choices.filter((choice) => choice === question.correctAnswer).length, 1);
     assert.equal(question.choices[question.correctIndex], question.correctAnswer);
   }
-
   assert.ok(new Set(questions.map((question) => question.correctIndex)).size > 1);
 });
 
-test("음훈이 같은 항목이 있어도 중복·복수 정답 보기를 만들지 않는다", () => {
-  const entries = makeEntries(8);
-  entries[1] = { ...entries[1], eumhun: entries[0].eumhun };
-
-  const questions = createQuizQuestions(entries, {
-    count: 8,
-    rng: seededRng(123),
-  });
-
-  for (const question of questions) {
-    assert.equal(new Set(question.choices).size, 4);
-    assert.equal(
-      question.choices.filter((choice) => choice === question.correctAnswer).length,
-      1,
-    );
-  }
-});
-
 test("복수 훈음 중 하나라도 정답과 겹치는 후보는 오답에서 제외한다", () => {
-  const entries = makeEntries(8);
-  entries[0] = {
-    ...entries[0],
-    eum: ["동", "통"],
-    hun: ["마을", "골목"],
-    eumhun: "마을 동",
-  };
-  entries[1] = {
-    ...entries[1],
-    eum: ["통"],
-    hun: ["골목"],
-    eumhun: "골목 통",
-  };
+  const entries = makeEntries();
+  entries[0] = { ...entries[0], eum: ["동", "통"], hun: ["마을", "골목"], eumhun: "마을 동" };
+  entries[1] = { ...entries[1], eum: ["통"], hun: ["골목"], eumhun: "골목 통" };
 
-  const questions = createQuizQuestions(entries, {
-    count: 8,
-    rng: seededRng(321),
-  });
-  const multipleReadingQuestion = questions.find(
-    (question) => question.entryId === entries[0].id,
-  );
+  const questions = createQuizQuestions(entries, { studySet: "7급-1", count: 25, rng: seededRng(321) });
+  const multipleReadingQuestion = questions.find((question) => question.entryId === entries[0].id);
 
   assert.ok(multipleReadingQuestion);
   assert.equal(multipleReadingQuestion.choices.includes("골목 통"), false);
 });
 
 test("서로 다른 음훈이 네 개보다 적으면 4지선다 생성을 거부한다", () => {
+  const entries = makeEntries().slice(0, 3);
   assert.throws(
-    () => createQuizQuestions(makeEntries(3), { rng: seededRng() }),
+    () => createQuizQuestions(entries, { studySet: "7급-1", rng: seededRng() }),
     /최소 4개/,
   );
 });

@@ -1,40 +1,52 @@
 import type {
-  GradeFilter,
   HanjaEntry,
   MatchCard,
   QuizQuestion,
   RandomSource,
-} from "./types";
+  StudySet,
+  StudySetId,
+} from "./types.ts";
+import { DEFAULT_STUDY_SET, STUDY_SETS } from "./types.ts";
+
+export const MATCH_VISIBLE_CARD_COUNT = 10;
+export const QUIZ_QUESTION_COUNT = 25;
 
 export interface MatchingOptions {
-  grade?: GradeFilter;
-  pairCount?: number;
+  studySet?: StudySetId;
   rng?: RandomSource;
 }
 
 export interface QuizOptions {
-  grade?: GradeFilter;
-  /** 한 세트에서 최대 10문제까지만 생성합니다. */
+  studySet?: StudySetId;
   count?: number;
   rng?: RandomSource;
 }
 
-const DEFAULT_MATCH_PAIR_COUNT = 6;
-const DEFAULT_QUIZ_COUNT = 10;
-const MAX_QUIZ_COUNT = 10;
+/** 25자 세트 정의를 반환합니다. */
+export function getStudySet(studySet: StudySetId): StudySet {
+  const definition = STUDY_SETS.find((item) => item.id === studySet);
+  if (!definition) {
+    throw new RangeError(`알 수 없는 학습 세트입니다: ${studySet}`);
+  }
+  return definition;
+}
 
 /**
- * 선택한 급수에 해당하는 한자만 반환합니다.
- * `전체`는 원래 배열의 얕은 복사본을 반환해 호출자가 입력을 바꾸지 못하게 합니다.
+ * 원본 데이터 순서를 유지한 채 선택 세트의 25자만 반환합니다.
+ * 인덱스는 각 급수 안에서 계산하므로 급수 경계를 넘지 않습니다.
  */
-export function filterByGrade(
+export function filterByStudySet(
   entries: readonly HanjaEntry[],
-  grade: GradeFilter = "전체",
+  studySet: StudySetId = DEFAULT_STUDY_SET,
 ): HanjaEntry[] {
-  return grade === "전체"
-    ? [...entries]
-    : entries.filter((entry) => entry.grade === grade);
+  const definition = getStudySet(studySet);
+  return entries
+    .filter((entry) => entry.grade === definition.grade)
+    .slice(definition.startIndex, definition.endIndex);
 }
+
+/** 이전 호출부의 이름을 유지한 세트 필터 별칭입니다. */
+export const filterByGrade = filterByStudySet;
 
 /** 입력 배열을 변경하지 않는 Fisher-Yates 셔플입니다. */
 export function shuffle<T>(
@@ -56,58 +68,52 @@ export function shuffle<T>(
   return result;
 }
 
-/** 선택 범위에서 기본 여섯 쌍(열두 장)의 매칭 카드를 만듭니다. */
+/** 선택 세트의 모든 한자와 음훈으로 50장의 매칭 카드 덱을 만듭니다. */
 export function createMatchingCards(
   entries: readonly HanjaEntry[],
   options: MatchingOptions = {},
 ): MatchCard[] {
-  const {
-    grade = "전체",
-    pairCount = DEFAULT_MATCH_PAIR_COUNT,
-    rng = Math.random,
-  } = options;
+  const { studySet = DEFAULT_STUDY_SET, rng = Math.random } = options;
+  const selectedEntries = uniqueEntries(filterByStudySet(entries, studySet));
 
-  assertPositiveInteger(pairCount, "pairCount");
-
-  const availableEntries = uniqueEntries(filterByGrade(entries, grade));
-  const selectedEntries = shuffle(availableEntries, rng).slice(0, pairCount);
-  const cards = selectedEntries.flatMap<MatchCard>((entry) => [
-    {
-      id: `${entry.id}:hanja`,
-      pairId: entry.id,
-      entryId: entry.id,
-      kind: "hanja",
-      content: entry.hanja,
-    },
-    {
-      id: `${entry.id}:eumhun`,
-      pairId: entry.id,
-      entryId: entry.id,
-      kind: "eumhun",
-      content: entry.eumhun,
-    },
-  ]);
-
-  return shuffle(cards, rng);
+  return shuffle(
+    selectedEntries.flatMap<MatchCard>((entry) => [
+      {
+        id: `${entry.id}:hanja`,
+        pairId: entry.id,
+        entryId: entry.id,
+        kind: "hanja",
+        content: entry.hanja,
+      },
+      {
+        id: `${entry.id}:eumhun`,
+        pairId: entry.id,
+        entryId: entry.id,
+        kind: "eumhun",
+        content: entry.eumhun,
+      },
+    ]),
+    rng,
+  );
 }
 
 /**
  * 중복 문제와 중복 보기가 없는 4지선다 세트를 만듭니다.
- * 요청 개수가 10보다 커도 한 세트에는 최대 10문제만 반환합니다.
+ * 기본값은 현재 학습 세트의 25문제 전체입니다.
  */
 export function createQuizQuestions(
   entries: readonly HanjaEntry[],
   options: QuizOptions = {},
 ): QuizQuestion[] {
   const {
-    grade = "전체",
-    count = DEFAULT_QUIZ_COUNT,
+    studySet = DEFAULT_STUDY_SET,
+    count = QUIZ_QUESTION_COUNT,
     rng = Math.random,
   } = options;
 
   assertPositiveInteger(count, "count");
 
-  const availableEntries = uniqueEntries(filterByGrade(entries, grade));
+  const availableEntries = uniqueEntries(filterByStudySet(entries, studySet));
   if (availableEntries.length === 0) {
     return [];
   }
@@ -128,7 +134,7 @@ export function createQuizQuestions(
     );
   }
 
-  const questionCount = Math.min(count, MAX_QUIZ_COUNT, eligibleEntries.length);
+  const questionCount = Math.min(count, eligibleEntries.length);
   const selectedEntries = shuffle(eligibleEntries, rng).slice(0, questionCount);
 
   return selectedEntries.map((entry) => {

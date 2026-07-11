@@ -725,79 +725,71 @@ main {
 }
 
 .match-card {
+  position: relative;
   min-width: 0;
   aspect-ratio: 1 / 0.86;
-  padding: 0;
-  border: 0;
-  border-radius: 12px;
-  background: transparent;
-  perspective: 900px;
-  cursor: pointer;
-}
-
-.match-card__inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: inherit;
-  transform-style: preserve-3d;
-  transition: transform 280ms ease;
-}
-
-.match-card[aria-pressed="true"] .match-card__inner,
-.match-card[data-matched="true"] .match-card__inner {
-  transform: rotateY(180deg);
-}
-
-.match-card__face {
-  position: absolute;
-  inset: 0;
   display: grid;
   place-items: center;
   padding: 12px;
   border: 1px solid var(--color-fog);
-  border-radius: inherit;
-  backface-visibility: hidden;
-}
-
-.match-card__back {
-  background: var(--color-ink);
-  color: white;
-}
-
-.match-card__back::before {
-  width: 34px;
-  height: 50px;
-  border-left: 7px solid var(--color-primary-bright);
-  border-right: 7px solid var(--color-primary-bright);
-  content: "";
-  transform: skew(-18deg);
-}
-
-.match-card__front {
+  border-radius: 12px;
   background: white;
-  transform: rotateY(180deg);
   box-shadow: var(--shadow-soft);
+  color: var(--color-ink);
   text-align: center;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.match-card:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.match-card[data-state="selected"] {
+  border: 2px solid var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.match-card[data-state="correct"] {
+  border: 2px solid var(--color-success);
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.match-card[data-state="wrong"] {
+  border: 2px solid var(--color-error);
+  background: var(--color-error-soft);
+  color: var(--color-error);
+}
+
+.match-card__content {
+  display: block;
   font-weight: 800;
 }
 
-.match-card__front--hanja {
+.match-card__content--hanja {
   color: var(--color-primary);
   font-family: var(--font-hanja);
   font-size: clamp(38px, 5vw, 58px);
 }
 
-.match-card__front--meaning {
+.match-card[data-state="correct"] .match-card__content--hanja,
+.match-card[data-state="wrong"] .match-card__content--hanja {
+  color: currentColor;
+}
+
+.match-card__content--meaning {
   font-size: clamp(14px, 2vw, 18px);
   line-height: 1.35;
 }
 
-.match-card[data-matched="true"] .match-card__front {
-  border: 2px solid var(--color-success);
-  background: var(--color-success-soft);
-  color: var(--color-success);
+.match-card__state {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .game-help {
@@ -894,6 +886,23 @@ main {
   color: var(--color-error);
 }
 
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.shake-effect {
+  animation: shake 0.2s ease-in-out 2;
+}
+
 .choice-index {
   width: 32px;
   height: 32px;
@@ -915,6 +924,16 @@ main {
   background: var(--color-primary-soft);
   color: var(--color-charcoal);
   font-size: 14px;
+}
+
+.answer-feedback--correct {
+  border-left-color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.answer-feedback--wrong {
+  border-left-color: var(--color-error);
+  background: var(--color-error-soft);
 }
 
 .answer-feedback strong {
@@ -1228,7 +1247,7 @@ main {
     aspect-ratio: 1 / 1.02;
   }
 
-  .match-card__front--meaning {
+  .match-card__content--meaning {
     font-size: 13px;
   }
 

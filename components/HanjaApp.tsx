@@ -2,17 +2,18 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { filterByGrade } from "../lib/game";
+import { filterByStudySet, getStudySet } from "../lib/game";
 import {
-  advanceQuiz,
   answerQuizQuestion,
   createMatchSession,
   createQuizSession,
   isCheckingPairMatched,
+  resolveMatchCheck,
+  resolveQuizFeedback,
   restartMatchSession,
   restartQuizSession,
-  resolveMatchCheck,
   selectMatchCard,
+  summarizeMatch,
   summarizeQuiz,
 } from "../lib/session";
 import type { MatchSession, QuizSession } from "../lib/session";
@@ -21,15 +22,16 @@ import {
   createDefaultProgress,
   loadProgress,
   saveProgress,
-  setSelectedGrade,
+  setSelectedStudySet,
 } from "../lib/storage";
 import type {
-  GradeFilter,
   HanjaEntry,
   MatchCard,
   ProgressState,
   StudyMode,
+  StudySetId,
 } from "../lib/types";
+import { DEFAULT_STUDY_SET, STUDY_SETS } from "../lib/types";
 
 type AppScreen =
   | "home"
@@ -38,9 +40,8 @@ type AppScreen =
   | "quiz"
   | "quiz-result";
 
-const GRADE_OPTIONS: GradeFilter[] = ["전체", "7급", "준6급", "6급"];
-const MATCH_REVEAL_DELAY_MS = 420;
-const MATCH_HIDE_DELAY_MS = 760;
+const MATCH_FEEDBACK_DELAY_MS = 1000;
+const QUIZ_FEEDBACK_DELAY_MS = 1000;
 
 interface HanjaAppProps {
   entries: HanjaEntry[];
@@ -48,18 +49,20 @@ interface HanjaAppProps {
 
 export function HanjaApp({ entries }: HanjaAppProps) {
   const [screen, setScreen] = useState<AppScreen>("home");
-  const [selectedGrade, setGrade] = useState<GradeFilter>("전체");
+  const [selectedStudySet, setStudySet] = useState<StudySetId>(
+    DEFAULT_STUDY_SET,
+  );
   const [progress, setProgress] = useState<ProgressState>(createDefaultProgress);
   const [isProgressReady, setIsProgressReady] = useState(false);
-
   const [matchSession, setMatchSession] = useState<MatchSession | null>(null);
   const [quizSession, setQuizSession] = useState<QuizSession | null>(null);
 
   const timersRef = useRef<number[]>([]);
+  const quizAnswerHandlerRef = useRef<(choice: string) => void>(() => {});
   const previousScreenRef = useRef<AppScreen | null>(null);
   const selectedEntries = useMemo(
-    () => filterByGrade(entries, selectedGrade),
-    [entries, selectedGrade],
+    () => filterByStudySet(entries, selectedStudySet),
+    [entries, selectedStudySet],
   );
   const sampleEntry = selectedEntries[0] ?? entries[0];
 
@@ -67,7 +70,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
     const restoreTimer = window.setTimeout(() => {
       const stored = loadProgress();
       setProgress(stored);
-      setGrade(stored.selectedGrade);
+      setStudySet(stored.selectedStudySet);
       setIsProgressReady(true);
     }, 0);
 
@@ -80,8 +83,6 @@ export function HanjaApp({ entries }: HanjaAppProps) {
     };
   }, []);
 
-  // 화면이 바뀌면 새 화면의 제목으로 포커스를 옮겨 키보드 사용자가
-  // 전환을 놓치지 않게 합니다. 첫 로드에서는 포커스를 빼앗지 않습니다.
   useEffect(() => {
     if (previousScreenRef.current === null) {
       previousScreenRef.current = screen;
@@ -110,21 +111,26 @@ export function HanjaApp({ entries }: HanjaAppProps) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function chooseGrade(grade: GradeFilter) {
-    setGrade(grade);
+  function chooseStudySet(studySet: StudySetId) {
+    setStudySet(studySet);
     setProgress((current) => {
-      const next = setSelectedGrade(current, grade);
+      const next = setSelectedStudySet(current, studySet);
       saveProgress(next);
       return next;
     });
   }
 
-  function recordCompletion(mode: StudyMode, correct: number, total: number) {
+  function recordCompletion(
+    mode: StudyMode,
+    studySet: StudySetId,
+    correct: number,
+    total: number,
+  ) {
     setProgress((current) => {
       const next = addRecentRecord(current, {
         id: makeRecordId(mode),
         mode,
-        grade: selectedGrade,
+        studySet,
         completedAt: new Date().toISOString(),
         correct,
         total,
@@ -136,9 +142,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
 
   function startMatching() {
     clearScheduledTimers();
-    setMatchSession(
-      createMatchSession(entries, { grade: selectedGrade, pairCount: 6 }),
-    );
+    setMatchSession(createMatchSession(entries, { studySet: selectedStudySet }));
     setScreen("matching");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -169,35 +173,31 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       return;
     }
 
-    // 비교 지연은 UI 효과이므로 타이머로만 처리하고,
-    // 판정 자체는 순수 함수 resolveMatchCheck가 담당합니다.
-    const matched = isCheckingPairMatched(next);
-    schedule(
-      () => {
-        const resolved = resolveMatchCheck(next);
-        setMatchSession(resolved);
-        if (resolved.phase === "complete") {
-          const totalPairs = resolved.cards.length / 2;
-          recordCompletion("matching", totalPairs, totalPairs);
-          setScreen("matching-result");
-        }
-      },
-      matched ? MATCH_REVEAL_DELAY_MS : MATCH_HIDE_DELAY_MS,
-    );
+    schedule(() => {
+      const resolved = resolveMatchCheck(next);
+      setMatchSession(resolved);
+      if (resolved.phase === "complete") {
+        const summary = summarizeMatch(resolved);
+        recordCompletion("matching", resolved.studySet, summary.score, summary.total);
+        setScreen("matching-result");
+      }
+    }, MATCH_FEEDBACK_DELAY_MS);
   }
 
   function startQuiz() {
     clearScheduledTimers();
     let session: QuizSession;
     try {
-      session = createQuizSession(entries, { grade: selectedGrade, count: 10 });
+      session = createQuizSession(entries, { studySet: selectedStudySet, count: 25 });
     } catch {
       session = {
-        grade: selectedGrade,
+        studySet: selectedStudySet,
         questions: [],
         currentIndex: 0,
         answers: [],
-        phase: "asking",
+        feedback: null,
+        wrongEntryIds: [],
+        phase: "complete",
       };
     }
     setQuizSession(session);
@@ -217,28 +217,52 @@ export function HanjaApp({ entries }: HanjaAppProps) {
   }
 
   function handleChooseQuizAnswer(choice: string) {
-    setQuizSession((current) =>
-      current ? answerQuizQuestion(current, choice) : current,
-    );
-  }
-
-  function handleNextQuestion() {
     if (!quizSession) {
       return;
     }
 
-    const next = advanceQuiz(quizSession);
+    const next = answerQuizQuestion(quizSession, choice);
     if (next === quizSession) {
       return;
     }
     setQuizSession(next);
 
-    if (next.phase === "complete") {
-      const summary = summarizeQuiz(next);
-      recordCompletion("quiz", summary.score, summary.total);
-      setScreen("quiz-result");
-    }
+    schedule(() => {
+      const resolved = resolveQuizFeedback(next);
+      setQuizSession(resolved);
+      if (resolved.phase === "complete") {
+        const summary = summarizeQuiz(resolved);
+        recordCompletion("quiz", resolved.studySet, summary.score, summary.total);
+        setScreen("quiz-result");
+      }
+    }, QUIZ_FEEDBACK_DELAY_MS);
   }
+
+  useEffect(() => {
+    quizAnswerHandlerRef.current = handleChooseQuizAnswer;
+  });
+
+  useEffect(() => {
+    if (screen !== "quiz" || quizSession?.phase !== "asking") {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.metaKey || event.ctrlKey || event.altKey) {
+        return;
+      }
+      const index = Number(event.key) - 1;
+      const choice = quizSession?.questions[quizSession.currentIndex]?.choices[index];
+      if (index < 0 || index > 3 || !choice) {
+        return;
+      }
+      event.preventDefault();
+      quizAnswerHandlerRef.current(choice);
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [screen, quizSession]);
 
   const completedGames =
     progress.matching.completedGames + progress.quiz.completedGames;
@@ -248,6 +272,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       )
     : 0;
   const quizSummary = quizSession ? summarizeQuiz(quizSession) : null;
+  const matchSummary = matchSession ? summarizeMatch(matchSession) : null;
 
   return (
     <div className="app-shell">
@@ -264,9 +289,7 @@ export function HanjaApp({ entries }: HanjaAppProps) {
       <header className="site-header">
         <div className="container site-header__inner">
           <button className="brand-button" type="button" onClick={goHome}>
-            <span className="brand-mark" aria-hidden="true">
-              한
-            </span>
+            <span className="brand-mark" aria-hidden="true">한</span>
             <span className="brand-copy">
               <strong>한자랑</strong>
               <small>200자 학습</small>
@@ -289,11 +312,11 @@ export function HanjaApp({ entries }: HanjaAppProps) {
         {screen === "home" && (
           <HomeScreen
             sampleEntry={sampleEntry}
-            selectedGrade={selectedGrade}
+            selectedStudySet={selectedStudySet}
             selectedCount={selectedEntries.length}
             progress={progress}
             quizAccuracy={quizAccuracy}
-            onChooseGrade={chooseGrade}
+            onChooseStudySet={chooseStudySet}
             onStartMatching={startMatching}
             onStartQuiz={startQuiz}
           />
@@ -312,16 +335,16 @@ export function HanjaApp({ entries }: HanjaAppProps) {
             session={quizSession}
             onBack={goHome}
             onChoose={handleChooseQuizAnswer}
-            onNext={handleNextQuestion}
           />
         )}
 
-        {screen === "matching-result" && matchSession && (
+        {screen === "matching-result" && matchSession && matchSummary && (
           <ResultScreen
             mode="matching"
-            score={matchSession.matchedPairIds.length}
-            total={matchSession.cards.length / 2}
-            wrongEntries={[]}
+            score={matchSummary.score}
+            total={matchSummary.total}
+            wrongAttempts={matchSummary.wrongAttempts}
+            wrongEntries={entriesForIds(entries, matchSummary.wrongEntryIds)}
             onRetrySame={retrySameMatching}
             onRetryNew={startMatching}
             onSwitchMode={startQuiz}
@@ -357,22 +380,22 @@ export function HanjaApp({ entries }: HanjaAppProps) {
 
 interface HomeScreenProps {
   sampleEntry: HanjaEntry | undefined;
-  selectedGrade: GradeFilter;
+  selectedStudySet: StudySetId;
   selectedCount: number;
   progress: ProgressState;
   quizAccuracy: number;
-  onChooseGrade: (grade: GradeFilter) => void;
+  onChooseStudySet: (studySet: StudySetId) => void;
   onStartMatching: () => void;
   onStartQuiz: () => void;
 }
 
 function HomeScreen({
   sampleEntry,
-  selectedGrade,
+  selectedStudySet,
   selectedCount,
   progress,
   quizAccuracy,
-  onChooseGrade,
+  onChooseStudySet,
   onStartMatching,
   onStartQuiz,
 }: HomeScreenProps) {
@@ -383,6 +406,7 @@ function HomeScreen({
   const hasHistory =
     progress.matching.completedGames + progress.quiz.completedGames > 0 ||
     progress.recentRecords.length > 0;
+  const selectedSet = getStudySet(selectedStudySet);
 
   return (
     <div data-testid="app-home">
@@ -394,29 +418,28 @@ function HomeScreen({
               보고, 고르고, 맞추며 익히는 <em>200자</em>
             </h1>
             <p className="hero-description">
-              외우기만 하는 카드 대신, 한자와 음훈의 짝을 찾고 네 개의
-              보기에서 답을 골라 보세요. 한 번에 짧게, 기억에는 오래 남게
-              학습합니다.
+              한자와 음훈의 짝을 찾고 네 개의 보기에서 답을 골라 보세요.
+              한 세트 25자를 차근차근 익힐 수 있어요.
             </p>
             <fieldset className="grade-picker">
-              <legend>오늘 학습할 급수를 선택하세요</legend>
+              <legend>오늘 학습할 급수와 세트를 선택하세요</legend>
               <div className="grade-options">
-                {GRADE_OPTIONS.map((grade) => (
+                {STUDY_SETS.map((studySet) => (
                   <button
-                    key={grade}
+                    key={studySet.id}
                     className="grade-option"
                     type="button"
-                    aria-pressed={selectedGrade === grade}
-                    data-testid={`grade-${grade}`}
-                    onClick={() => onChooseGrade(grade)}
+                    aria-pressed={selectedStudySet === studySet.id}
+                    data-testid={`study-set-${studySet.id}`}
+                    onClick={() => onChooseStudySet(studySet.id)}
                   >
-                    {grade}
+                    {studySet.id}
                   </button>
                 ))}
               </div>
             </fieldset>
             <p className="scope-summary" aria-live="polite">
-              선택한 범위: <strong>{selectedGrade}</strong> · {selectedCount}자
+              선택한 범위: <strong>{selectedSet.label}</strong> · {selectedCount}자
             </p>
           </div>
 
@@ -447,8 +470,8 @@ function HomeScreen({
               </h2>
             </div>
             <p className="section-description">
-              선택한 {selectedGrade} 범위에서 매번 새로운 문제가 나옵니다.
-              원하는 방식부터 시작하세요.
+              선택한 {selectedSet.label}의 25자로 학습합니다. 원하는 방식부터
+              시작하세요.
             </p>
           </div>
 
@@ -458,8 +481,8 @@ function HomeScreen({
                 <div className="mode-card__number">1</div>
                 <h3>짝맞추기</h3>
                 <p>
-                  뒤집힌 열두 장 중 한자와 알맞은 음훈을 찾아 여섯 쌍을
-                  완성해요.
+                  앞면으로 보이는 카드 열 장에서 한자와 알맞은 음훈을 찾아
+                  25쌍을 완성해요.
                 </p>
                 <button
                   className="primary-button"
@@ -485,8 +508,8 @@ function HomeScreen({
                 <div className="mode-card__number">2</div>
                 <h3>4지선다 퀴즈</h3>
                 <p>
-                  제시된 한자를 보고 네 개의 음훈 중 정답을 골라 열 문제에
-                  도전해요.
+                  제시된 한자를 보고 네 개의 음훈 중 정답을 골라 25문제를
+                  연속으로 풀어요.
                 </p>
                 <button
                   className="dark-button"
@@ -517,56 +540,34 @@ function HomeScreen({
           <div>
             <p className="eyebrow">나의 학습 기록</p>
             <h2 id="progress-title">조금씩 쌓인 기록이 실력이 돼요.</h2>
-            <p>
-              결과는 이 브라우저에 안전하게 저장됩니다. 로그인은 필요하지
-              않아요.
-            </p>
+            <p>결과는 이 브라우저에 안전하게 저장됩니다. 로그인은 필요하지 않아요.</p>
             {hasHistory && (
               <div className="progress-recent" data-testid="recent-summary">
                 {latestRecord && (
                   <p>
-                    최근 학습:{" "}
-                    <strong>
-                      {latestRecord.mode === "quiz" ? "4지선다" : "짝맞추기"}{" "}
-                      {latestRecord.correct}/{latestRecord.total}
-                    </strong>{" "}
-                    ({latestRecord.grade})
+                    최근 학습: <strong>{latestRecord.mode === "quiz" ? "4지선다" : "짝맞추기"} {latestRecord.correct}/{latestRecord.total}</strong> ({getStudySet(latestRecord.studySet).label})
                   </p>
                 )}
                 {latestQuizRecord && latestQuizRecord !== latestRecord && (
                   <p>
-                    최근 퀴즈 점수:{" "}
-                    <strong>
-                      {latestQuizRecord.correct}/{latestQuizRecord.total}
-                    </strong>{" "}
-                    ({latestQuizRecord.grade})
+                    최근 퀴즈 점수: <strong>{latestQuizRecord.correct}/{latestQuizRecord.total}</strong> ({getStudySet(latestQuizRecord.studySet).label})
                   </p>
                 )}
                 <p>
-                  마지막 학습 범위: <strong>{progress.selectedGrade}</strong>
+                  마지막 학습 범위: <strong>{getStudySet(progress.selectedStudySet).label}</strong>
                 </p>
               </div>
             )}
           </div>
           {hasHistory ? (
             <div className="progress-stats">
-              <div className="progress-stat">
-                <strong>{progress.matching.completedGames}</strong>
-                <span>짝맞추기 완료</span>
-              </div>
-              <div className="progress-stat">
-                <strong>{progress.quiz.completedGames}</strong>
-                <span>퀴즈 완료</span>
-              </div>
-              <div className="progress-stat">
-                <strong>{quizAccuracy}%</strong>
-                <span>누적 정답률</span>
-              </div>
+              <div className="progress-stat"><strong>{progress.matching.completedGames}</strong><span>짝맞추기 완료</span></div>
+              <div className="progress-stat"><strong>{progress.quiz.completedGames}</strong><span>퀴즈 완료</span></div>
+              <div className="progress-stat"><strong>{quizAccuracy}%</strong><span>누적 정답률</span></div>
             </div>
           ) : (
             <p className="progress-empty" data-testid="progress-empty">
-              아직 완료한 학습이 없어요. 첫 라운드를 마치면 기록이 여기에
-              쌓여요.
+              아직 완료한 학습이 없어요. 첫 라운드를 마치면 기록이 여기에 쌓여요.
             </p>
           )}
         </div>
@@ -582,22 +583,18 @@ interface MatchingScreenProps {
 }
 
 function MatchingScreen({ session, onBack, onSelect }: MatchingScreenProps) {
-  const { cards, faceUpIds, matchedPairIds, attempts, grade } = session;
+  const { cards, faceUpIds, matchedPairIds, attempts, totalPairs, studySet, phase } = session;
   const gridRef = useRef<HTMLDivElement | null>(null);
-  const totalPairs = cards.length / 2;
   const matchedCount = matchedPairIds.length;
   const progressPercent = totalPairs ? (matchedCount / totalPairs) * 100 : 0;
+  const checkingMatched = isCheckingPairMatched(session);
 
-  // 맞춘 카드가 비활성화되면서 포커스가 body로 떨어지면
-  // 다음 사용 가능한 카드로 포커스를 이어 줍니다.
   useEffect(() => {
     if (matchedCount === 0 || document.activeElement !== document.body) {
       return;
     }
-    gridRef.current
-      ?.querySelector<HTMLButtonElement>("button:not(:disabled)")
-      ?.focus();
-  }, [matchedCount]);
+    gridRef.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus();
+  }, [cards, matchedCount]);
 
   return (
     <section className="learning-page" data-testid="matching-screen">
@@ -608,39 +605,17 @@ function MatchingScreen({ session, onBack, onSelect }: MatchingScreenProps) {
         <header className="session-header">
           <div className="session-header__main">
             <div>
-              <p className="eyebrow">{grade} · 여섯 쌍</p>
-              <h1 className="session-title" tabIndex={-1}>
-                한자와 음훈의 짝을 찾아요
-              </h1>
-              <p className="session-subtitle">
-                카드 두 장을 차례로 열어 같은 한자의 짝을 맞춰 보세요.
-              </p>
+              <p className="eyebrow">{getStudySet(studySet).label} · 25쌍</p>
+              <h1 className="session-title" tabIndex={-1}>한자와 음훈의 짝을 찾아요</h1>
+              <p className="session-subtitle">모든 카드가 앞면으로 보입니다. 두 장을 골라 같은 한자의 짝을 맞춰 보세요.</p>
             </div>
             <div className="session-stats" aria-live="polite">
-              <div className="session-stat">
-                <strong>
-                  {matchedCount}/{totalPairs}
-                </strong>
-                <span>맞춘 쌍</span>
-              </div>
-              <div className="session-stat">
-                <strong>{attempts}</strong>
-                <span>시도</span>
-              </div>
+              <div className="session-stat"><strong>{matchedCount}/{totalPairs}</strong><span>맞춘 쌍</span></div>
+              <div className="session-stat"><strong>{attempts}</strong><span>시도</span></div>
             </div>
           </div>
-          <div
-            className="progress-track"
-            role="progressbar"
-            aria-label="짝맞추기 진행률"
-            aria-valuemin={0}
-            aria-valuemax={totalPairs}
-            aria-valuenow={matchedCount}
-          >
-            <div
-              className="progress-track__bar"
-              style={{ width: `${progressPercent}%` }}
-            />
+          <div className="progress-track" role="progressbar" aria-label="짝맞추기 진행률" aria-valuemin={0} aria-valuemax={totalPairs} aria-valuenow={matchedCount}>
+            <div className="progress-track__bar" style={{ width: `${progressPercent}%` }} />
           </div>
         </header>
 
@@ -648,42 +623,34 @@ function MatchingScreen({ session, onBack, onSelect }: MatchingScreenProps) {
           <div className="game-panel">
             <div className="match-grid" ref={gridRef}>
               {cards.map((card) => {
-                const isOpen = faceUpIds.includes(card.id);
-                const isMatched = matchedPairIds.includes(card.pairId);
-                const label = isMatched
-                  ? `짝 맞춤: ${card.content}`
-                  : isOpen
-                    ? `열린 카드: ${card.content}`
-                    : "뒤집지 않은 카드";
+                const isSelected = faceUpIds.includes(card.id);
+                const state = isSelected && phase === "checking"
+                  ? checkingMatched ? "correct" : "wrong"
+                  : isSelected ? "selected" : "idle";
+                const label = isSelected ? `선택한 카드: ${card.content}` : `카드: ${card.content}`;
 
                 return (
                   <button
                     key={card.id}
-                    className="match-card"
+                    className={`match-card ${state === "wrong" ? "shake-effect" : ""}`}
                     type="button"
                     aria-label={label}
-                    aria-pressed={isOpen || isMatched}
-                    data-matched={isMatched}
+                    aria-pressed={isSelected}
+                    data-state={state}
                     data-testid={`match-card-${card.id}`}
-                    disabled={isMatched}
+                    disabled={phase === "checking"}
                     onClick={() => onSelect(card)}
                   >
-                    <span className="match-card__inner" aria-hidden="true">
-                      <span className="match-card__face match-card__back" />
-                      <span
-                        className={`match-card__face match-card__front match-card__front--${card.kind === "hanja" ? "hanja" : "meaning"}`}
-                      >
-                        {card.content}
-                      </span>
+                    <span className={`match-card__content match-card__content--${card.kind === "hanja" ? "hanja" : "meaning"}`}>
+                      {card.content}
                     </span>
+                    {state === "correct" && <span className="match-card__state">✓ 맞춤</span>}
+                    {state === "wrong" && <span className="match-card__state">× 다시 골라요</span>}
                   </button>
                 );
               })}
             </div>
-            <p className="game-help">
-              한자 카드와 ‘뜻 음’ 카드는 서로 한 쌍입니다. 키보드의 Tab과
-              Enter로도 플레이할 수 있어요.
-            </p>
+            <p className="game-help">화면에는 한자 5장과 음훈 5장이 보입니다. 틀린 선택은 1초 뒤 다시 고를 수 있어요.</p>
           </div>
         ) : (
           <EmptyState onHome={onBack} />
@@ -697,45 +664,23 @@ interface QuizScreenProps {
   session: QuizSession;
   onBack: () => void;
   onChoose: (answer: string) => void;
-  onNext: () => void;
 }
 
-function QuizScreen({ session, onBack, onChoose, onNext }: QuizScreenProps) {
-  const { questions, currentIndex, answers, grade, phase } = session;
+function QuizScreen({ session, onBack, onChoose }: QuizScreenProps) {
+  const { questions, currentIndex, answers, studySet, feedback } = session;
   const question = questions[currentIndex];
-  const isLast = currentIndex === questions.length - 1;
-  const score = answers.filter((answer) => answer.correct).length;
-  const selectedAnswer =
-    phase === "answered" ? (answers[answers.length - 1]?.selected ?? null) : null;
-
+  const score = answers.length;
   const questionRef = useRef<HTMLDivElement | null>(null);
-  const nextButtonRef = useRef<HTMLButtonElement | null>(null);
-
-  // 응답 직후에는 유일하게 활성화된 다음 동작으로 포커스를 옮기고,
-  // 다음 문제로 넘어가면 문제 영역에서 다시 시작하게 합니다.
-  useEffect(() => {
-    if (selectedAnswer !== null) {
-      nextButtonRef.current?.focus();
-    }
-  }, [selectedAnswer]);
 
   useEffect(() => {
-    if (currentIndex > 0) {
+    if (currentIndex > 0 && feedback === null) {
       questionRef.current?.focus();
     }
-  }, [currentIndex]);
+  }, [currentIndex, feedback]);
 
   if (!question) {
-    return (
-      <section className="learning-page">
-        <div className="learning-container">
-          <EmptyState onHome={onBack} />
-        </div>
-      </section>
-    );
+    return <section className="learning-page"><div className="learning-container"><EmptyState onHome={onBack} /></div></section>;
   }
-
-  const isCorrect = selectedAnswer === question.correctAnswer;
 
   return (
     <section className="learning-page" data-testid="quiz-screen">
@@ -746,114 +691,55 @@ function QuizScreen({ session, onBack, onChoose, onNext }: QuizScreenProps) {
         <header className="session-header">
           <div className="session-header__main">
             <div>
-              <p className="eyebrow">{grade} · 열 문제</p>
-              <h1 className="session-title" tabIndex={-1}>
-                알맞은 음훈을 골라요
-              </h1>
-              <p className="session-subtitle">
-                한자를 보고 네 개의 보기 중 정답 하나를 선택하세요.
-              </p>
+              <p className="eyebrow">{getStudySet(studySet).label} · 25문제</p>
+              <h1 className="session-title" tabIndex={-1}>알맞은 음훈을 골라요</h1>
+              <p className="session-subtitle">한자를 보고 네 개의 보기 중 정답 하나를 선택하세요. 숫자 1~4 키도 사용할 수 있어요.</p>
             </div>
             <div className="session-stats" aria-live="polite">
-              <div className="session-stat">
-                <strong>
-                  {currentIndex + 1}/{questions.length}
-                </strong>
-                <span>현재 문제</span>
-              </div>
-              <div className="session-stat">
-                <strong>{score}</strong>
-                <span>맞힌 문제</span>
-              </div>
+              <div className="session-stat"><strong>{currentIndex + 1}/{questions.length}</strong><span>현재 문제</span></div>
+              <div className="session-stat"><strong>{score}</strong><span>맞힌 문제</span></div>
             </div>
           </div>
-          <div
-            className="progress-track"
-            role="progressbar"
-            aria-label="퀴즈 진행률"
-            aria-valuemin={1}
-            aria-valuemax={questions.length}
-            aria-valuenow={currentIndex + 1}
-          >
-            <div
-              className="progress-track__bar"
-              style={{
-                width: `${((currentIndex + 1) / questions.length) * 100}%`,
-              }}
-            />
+          <div className="progress-track" role="progressbar" aria-label="퀴즈 진행률" aria-valuemin={1} aria-valuemax={questions.length} aria-valuenow={currentIndex + 1}>
+            <div className="progress-track__bar" style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }} />
           </div>
         </header>
 
         <div className="game-panel quiz-panel">
           <div className="quiz-question" ref={questionRef} tabIndex={-1}>
             <p className="quiz-question__label">이 한자의 음훈은 무엇일까요?</p>
-            <p className="quiz-question__hanja" data-testid="quiz-hanja">
-              {question.hanja}
-            </p>
+            <p className="quiz-question__hanja" data-testid="quiz-hanja">{question.hanja}</p>
           </div>
           <div className="quiz-answers">
             <h2>정답을 하나 선택하세요</h2>
             <div className="choice-list">
               {question.choices.map((choice, index) => {
-                const isAnswer = choice === question.correctAnswer;
-                const isSelected = choice === selectedAnswer;
-                const state =
-                  selectedAnswer === null
-                    ? "idle"
-                    : isAnswer
-                      ? "correct"
-                      : isSelected
-                        ? "wrong"
-                        : "idle";
-
+                const isSelected = feedback?.selected === choice;
+                const state = isSelected ? feedback?.correct ? "correct" : "wrong" : "idle";
                 return (
                   <button
                     key={choice}
-                    className="choice-button"
+                    className={`choice-button ${state === "wrong" ? "shake-effect" : ""}`}
                     type="button"
                     data-state={state}
                     data-testid={`quiz-choice-${index}`}
-                    disabled={selectedAnswer !== null}
+                    disabled={feedback !== null}
                     onClick={() => onChoose(choice)}
                   >
-                    <span className="choice-index" aria-hidden="true">
-                      {index + 1}
-                    </span>
+                    <span className="choice-index" aria-hidden="true">{index + 1}</span>
                     <span>{choice}</span>
-                    {selectedAnswer !== null && isAnswer && (
-                      <span className="choice-state">✓ 정답</span>
-                    )}
-                    {selectedAnswer !== null && isSelected && !isAnswer && (
-                      <span className="choice-state">× 선택</span>
-                    )}
+                    {state === "correct" && <span className="choice-state">✓ 정답</span>}
+                    {state === "wrong" && <span className="choice-state">× 다시 선택</span>}
                   </button>
                 );
               })}
             </div>
 
-            {selectedAnswer !== null && (
-              <div className="answer-feedback" role="status">
-                {isCorrect ? "잘했어요! " : "아쉬워요. 정답은 "}
-                <strong>{question.correctAnswer}</strong>입니다.
-                {question.entry.sourceLabel !== question.entry.eumhun && (
-                  <> 원문 음훈은 ‘{question.entry.sourceLabel}’입니다.</>
-                )}
+            {feedback && (
+              <div className={`answer-feedback answer-feedback--${feedback.correct ? "correct" : "wrong"}`} role="status">
+                {feedback.correct ? "잘했어요! 다음 문제로 넘어갑니다." : "아쉬워요. 정답을 다시 골라보세요."}
               </div>
             )}
-
-            <div className="quiz-actions">
-              <button
-                className="primary-button"
-                type="button"
-                data-testid="quiz-next"
-                ref={nextButtonRef}
-                disabled={selectedAnswer === null}
-                onClick={onNext}
-              >
-                {isLast ? "결과 보기" : "다음 문제"}
-                <span aria-hidden="true">→</span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -865,6 +751,7 @@ interface ResultScreenProps {
   mode: StudyMode;
   score: number;
   total: number;
+  wrongAttempts?: number;
   wrongEntries: HanjaEntry[];
   onRetrySame: () => void;
   onRetryNew: () => void;
@@ -876,6 +763,7 @@ function ResultScreen({
   mode,
   score,
   total,
+  wrongAttempts,
   wrongEntries,
   onRetrySame,
   onRetryNew,
@@ -888,69 +776,34 @@ function ResultScreen({
   return (
     <section className="learning-page" data-testid={`${mode}-result`}>
       <div className="learning-container">
-        <button className="back-button" type="button" onClick={onHome}>
-          <span aria-hidden="true">←</span> 학습 선택으로
-        </button>
+        <button className="back-button" type="button" onClick={onHome}><span aria-hidden="true">←</span> 학습 선택으로</button>
         <div className="game-panel result-panel">
           <div className="result-score" aria-label={`정답률 ${percentage}%`}>
-            <div>
-              <strong>{isMatching ? "완료" : `${percentage}%`}</strong>
-              <span>
-                {score}/{total} {isMatching ? "쌍" : "문제"}
-              </span>
-            </div>
+            <div><strong>{isMatching ? "완료" : `${percentage}%`}</strong><span>{score}/{total} {isMatching ? "쌍" : "문제"}</span></div>
           </div>
           <div>
             <p className="eyebrow">학습을 마쳤어요</p>
             <h1 className="result-title" tabIndex={-1}>
-              {isMatching
-                ? "여섯 쌍을 모두 찾았어요!"
-                : score === total
-                  ? "모든 문제를 맞혔어요!"
-                  : "틀린 글자만 다시 보면 더 좋아요."}
+              {isMatching ? "스물다섯 쌍을 모두 찾았어요!" : "스물다섯 문제를 모두 풀었어요!"}
             </h1>
             <p className="result-copy">
               {isMatching
-                ? "한자와 음훈을 연결한 기억이 오래 남도록 한 번 더 도전해 보세요."
-                : `${total}문제 중 ${score}문제를 맞혔습니다. 결과가 이 기기의 학습 기록에 저장됐어요.`}
+                ? `전체 오답 시도는 ${wrongAttempts ?? 0}번이에요. 다시 볼 글자를 확인하고 한 번 더 도전해 보세요.`
+                : "정답을 모두 고를 때까지 풀었어요. 다시 볼 글자를 확인해 보세요."}
             </p>
             <div className="result-actions">
-              <button
-                className="primary-button"
-                type="button"
-                data-testid="result-retry"
-                onClick={onRetryNew}
-              >
-                {isMatching ? "새 카드로 하기" : "새 문제 풀기"}
-              </button>
-              <button
-                className="secondary-button"
-                type="button"
-                data-testid="result-retry-same"
-                onClick={onRetrySame}
-              >
-                {isMatching ? "같은 카드 다시 하기" : "같은 문제 다시 풀기"}
-              </button>
-              <button
-                className="secondary-button"
-                type="button"
-                onClick={onSwitchMode}
-              >
-                {isMatching ? "4지선다로 가기" : "짝맞추기로 가기"}
-              </button>
-              <button className="text-button" type="button" onClick={onHome}>
-                처음으로
-              </button>
+              <button className="primary-button" type="button" data-testid="result-retry" onClick={onRetryNew}>{isMatching ? "새 카드로 하기" : "새 문제 풀기"}</button>
+              <button className="secondary-button" type="button" data-testid="result-retry-same" onClick={onRetrySame}>{isMatching ? "같은 카드 다시 하기" : "같은 문제 다시 풀기"}</button>
+              <button className="secondary-button" type="button" onClick={onSwitchMode}>{isMatching ? "4지선다로 가기" : "짝맞추기로 가기"}</button>
+              <button className="text-button" type="button" onClick={onHome}>처음으로</button>
             </div>
 
-            {!isMatching && wrongEntries.length > 0 && (
+            {wrongEntries.length > 0 && (
               <div className="review-list">
-                <h3>다시 볼 글자</h3>
+                <h3>{isMatching ? "한 번이라도 틀린 글자" : "다시 볼 글자"}</h3>
                 <div className="review-chips">
                   {wrongEntries.map((entry) => (
-                    <span className="review-chip" key={entry.id}>
-                      <strong>{entry.hanja}</strong> {entry.eumhun}
-                    </span>
+                    <span className="review-chip" key={entry.id}><strong>{entry.hanja}</strong> {entry.eumhun}</span>
                   ))}
                 </div>
               </div>
@@ -966,12 +819,15 @@ function EmptyState({ onHome }: { onHome: () => void }) {
   return (
     <div className="empty-state" role="alert">
       <h2>문제를 준비하지 못했어요.</h2>
-      <p>학습 데이터를 다시 확인하고 급수를 선택해 주세요.</p>
-      <button className="primary-button" type="button" onClick={onHome}>
-        학습 선택으로 돌아가기
-      </button>
+      <p>학습 데이터를 다시 확인하고 세트를 선택해 주세요.</p>
+      <button className="primary-button" type="button" onClick={onHome}>학습 선택으로 돌아가기</button>
     </div>
   );
+}
+
+function entriesForIds(entries: readonly HanjaEntry[], ids: readonly string[]): HanjaEntry[] {
+  const entryById = new Map(entries.map((entry) => [entry.id, entry]));
+  return ids.map((id) => entryById.get(id)).filter((entry): entry is HanjaEntry => entry !== undefined);
 }
 
 function makeRecordId(mode: StudyMode): string {

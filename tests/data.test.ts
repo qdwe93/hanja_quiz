@@ -3,7 +3,8 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { createQuizQuestions } from "../lib/game.ts";
-import type { GradeFilter, HanjaEntry } from "../lib/types.ts";
+import { STUDY_SETS } from "../lib/types.ts";
+import type { HanjaEntry } from "../lib/types.ts";
 
 const entries = JSON.parse(
   readFileSync(new URL("../data/hanja.json", import.meta.url), "utf8"),
@@ -51,19 +52,19 @@ test("ID·한자·대표 음훈은 고유하고 필수 값은 정상이다", () 
   }
 });
 
-test("모든 선택 범위에서 모호하지 않은 4지선다 열 문제를 생성한다", () => {
-  const grades: GradeFilter[] = ["전체", "7급", "준6급", "6급"];
+test("모든 25자 세트에서 모호하지 않은 4지선다 25문제를 생성한다", () => {
+  const studySets = STUDY_SETS;
 
-  for (const grade of grades) {
+  for (const studySet of studySets) {
     const questions = createQuizQuestions(entries, {
-      grade,
-      count: 10,
+      studySet: studySet.id,
+      count: 25,
       rng: seededRng(20260711),
     });
-    assert.equal(questions.length, 10);
+    assert.equal(questions.length, 25);
     assert.equal(
       new Set(questions.map((question) => question.entryId)).size,
-      10,
+      25,
     );
     for (const question of questions) {
       assert.equal(question.choices.length, 4);

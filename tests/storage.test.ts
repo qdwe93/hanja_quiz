@@ -1,7 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { PROGRESS_STORAGE_KEY, addRecentRecord, createDefaultProgress, loadProgress, parseProgress, saveProgress, setSelectedGrade } from "../lib/storage.ts";
+import {
+  PROGRESS_STORAGE_KEY,
+  addRecentRecord,
+  createDefaultProgress,
+  loadProgress,
+  parseProgress,
+  saveProgress,
+  setSelectedStudySet,
+} from "../lib/storage.ts";
 import type { StorageLike } from "../lib/storage";
 import type { ProgressRecord } from "../lib/types";
 
@@ -21,10 +29,10 @@ function makeRecord(index: number, mode: "matching" | "quiz" = "quiz"): Progress
   return {
     id: `record-${index}`,
     mode,
-    grade: "7급",
+    studySet: "7급-1",
     completedAt: new Date(Date.UTC(2026, 0, 1, 0, 0, index)).toISOString(),
-    correct: mode === "matching" ? 6 : 7,
-    total: mode === "matching" ? 6 : 10,
+    correct: mode === "matching" ? 25 : 25,
+    total: 25,
   };
 }
 
@@ -34,32 +42,33 @@ test("깨진 JSON, 빈 값, 다른 버전은 안전한 version=1 기본 상태�
   assert.deepEqual(parseProgress('{"version":2}'), createDefaultProgress());
 });
 
-test("부분적으로 손상된 필드는 기본값으로 복구하고 유효한 기록만 열 개 남긴다", () => {
+test("부분 손상 값은 복구하고 기존 급수 기록은 첫 세트로 안전하게 이관한다", () => {
   const records = Array.from({ length: 12 }, (_, index) => makeRecord(index));
   const parsed = parseProgress({
     version: 1,
-    selectedGrade: "없는 급수",
+    selectedGrade: "준6급",
     matching: { completedGames: -1, matchedPairs: 12 },
     quiz: { completedGames: 3, correctAnswers: 999, totalQuestions: 30 },
     recentRecords: [
       ...records,
-      { ...makeRecord(99), correct: 11, total: 10 },
+      {
+        id: "legacy-record",
+        mode: "quiz",
+        grade: "6급",
+        completedAt: "2026-01-01T00:00:00.000Z",
+        correct: 10,
+        total: 10,
+      },
+      { ...makeRecord(99), correct: 26, total: 25 },
       "손상된 기록",
     ],
   });
 
-  assert.equal(parsed.selectedGrade, "전체");
+  assert.equal(parsed.selectedStudySet, "준6급-1");
   assert.deepEqual(parsed.matching, { completedGames: 0, matchedPairs: 12 });
-  assert.deepEqual(parsed.quiz, {
-    completedGames: 3,
-    correctAnswers: 30,
-    totalQuestions: 30,
-  });
+  assert.deepEqual(parsed.quiz, { completedGames: 3, correctAnswers: 30, totalQuestions: 30 });
   assert.equal(parsed.recentRecords.length, 10);
-  assert.deepEqual(
-    parsed.recentRecords.map((record) => record.id),
-    records.slice(0, 10).map((record) => record.id),
-  );
+  assert.deepEqual(parsed.recentRecords.map((record) => record.id), records.slice(0, 10).map((record) => record.id));
 });
 
 test("최근 기록 추가는 원본을 바꾸지 않고 최신순 10개와 누계를 반환한다", () => {
@@ -75,15 +84,15 @@ test("최근 기록 추가는 원본을 바꾸지 않고 최신순 10개와 누�
   assert.equal(progress.recentRecords.length, 10);
   assert.equal(progress.recentRecords[0].id, "record-50");
   assert.equal(progress.quiz.completedGames, 11);
-  assert.equal(progress.quiz.correctAnswers, 77);
-  assert.equal(progress.quiz.totalQuestions, 110);
-  assert.deepEqual(progress.matching, { completedGames: 1, matchedPairs: 6 });
+  assert.equal(progress.quiz.correctAnswers, 275);
+  assert.equal(progress.quiz.totalQuestions, 275);
+  assert.deepEqual(progress.matching, { completedGames: 1, matchedPairs: 25 });
 });
 
-test("선택 급수와 진행 상태를 지정된 키로 저장하고 다시 불러온다", () => {
+test("선택 세트와 진행 상태를 지정된 키로 저장하고 다시 불러온다", () => {
   const storage = new MemoryStorage();
   const progress = addRecentRecord(
-    setSelectedGrade(createDefaultProgress(), "준6급"),
+    setSelectedStudySet(createDefaultProgress(), "준6급-2"),
     makeRecord(1),
   );
 
