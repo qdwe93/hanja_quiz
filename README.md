@@ -27,6 +27,20 @@ npm run dev
 
 개발 서버를 실행하면 `http://localhost:3000`에서 확인할 수 있습니다. 상세한 작업 현황, 다음 작업 우선순위, 검증 및 Git 절차는 [인수인계 문서](./docs/HANDOFF.md)에 정리되어 있습니다.
 
+## 온라인으로 보기
+
+`main`에 푸시하면 GitHub Actions가 정적 사이트를 빌드해 GitHub Pages에 배포합니다.
+
+- 공개 주소: https://qdwe93.github.io/hanja_quiz/
+- 배포 워크플로: [.github/workflows/deploy-pages.yml](./.github/workflows/deploy-pages.yml)
+
+앱 전체가 클라이언트에서 동작하므로 별도 서버 없이 정적 호스팅으로 제공됩니다. 프로젝트 사이트는 `/hanja_quiz/` 하위 경로에서 서비스되며, 빌드는 `PAGES_BASE`로 에셋 기준 경로를 맞춥니다. 로컬에서 같은 조건으로 확인하려면:
+
+```bash
+PAGES_BASE=/hanja_quiz/ npm run build:pages
+PAGES_BASE=/hanja_quiz/ npm run preview:pages   # http://localhost:4178/hanja_quiz/
+```
+
 ## 요구 사항
 
 - Node.js 22.13 이상 — 현재 개발·검증 기준은 Node.js 24
@@ -45,6 +59,8 @@ npm run dev
 | `npm run test:ui` | Vitest + React Testing Library 사용자 흐름 테스트 |
 | `npm run build` | Vinext/Cloudflare 호환 프로덕션 빌드 |
 | `npm run test:render` | 빌드 결과의 서버 렌더링 스모크 테스트 |
+| `npm run build:pages` | GitHub Pages용 정적 빌드(빌드 + 프리렌더) |
+| `npm run preview:pages` | 정적 산출물을 `PAGES_BASE` 하위 경로로 로컬 미리보기 |
 | `npm run validate` | lint → typecheck → test → test:ui → build → 렌더 스모크 테스트 |
 
 ## 기술 구성

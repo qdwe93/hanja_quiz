@@ -58,14 +58,23 @@ npm run dev
 4. 데이터·게임·저장소 변경에는 해당 단위 테스트를 추가한다.
 5. `npm run validate`와 브라우저 수동 점검을 완료한 뒤 커밋한다.
 
-P0 작업과 브라우저 QA는 2026-07-11에 모두 완료했다([TASKS.md](./TASKS.md) 7.1 기록 참조). 남은 후보는 다음과 같다.
+P0 작업과 브라우저 QA는 2026-07-11에 모두 완료했다([TASKS.md](./TASKS.md) 7.1 기록 참조). 온라인 공개는 GitHub Pages로 배포한다(아래 4.1). 남은 후보는 다음과 같다.
 
 - 완성된 앱의 Open Graph 이미지와 메타데이터 검토(BASE-006, P1)
-- 배포가 필요해질 때 `.openai/hosting.json`을 유지한 Sites 배포 절차 진행
+- Cloudflare 등 다른 호스팅이 필요해질 때 `.openai/hosting.json`을 유지한 Sites 배포 절차 진행
 - 실제 학생 사용성 피드백을 토대로 문구·난이도 조정
 - 실기기(모바일 터치·화면 읽기 프로그램)에서의 추가 확인
 
 위 항목은 현재 MVP의 작동을 막지 않으며, 요청이 있을 때만 진행한다.
+
+### 4.1 GitHub Pages 배포
+
+- 공개 주소: https://qdwe93.github.io/hanja_quiz/
+- `main`에 푸시하면 [deploy-pages.yml](../.github/workflows/deploy-pages.yml)이 `PAGES_BASE=/hanja_quiz/`로 정적 빌드해 Pages에 배포한다.
+- 정적 산출물은 `vinext build` 결과의 Worker를 SSR로 한 번 렌더링해 `dist/client/index.html`을 만들고(`scripts/prerender.mjs`), `dist/client`를 그대로 게시한다.
+- 프로젝트 사이트는 `/hanja_quiz/` 하위 경로이므로 에셋 경로가 base를 따라야 한다. base 없이 빌드하면 RSC가 주입하는 modulepreload가 루트(`/assets/`)를 가리켜 404가 난다.
+- 로컬 확인: `PAGES_BASE=/hanja_quiz/ npm run build:pages` 후 `PAGES_BASE=/hanja_quiz/ npm run preview:pages`.
+- 앱은 라우트가 `/` 하나뿐이라 새로고침·딥링크는 `404.html`(같은 셸)로 안전하게 복귀한다.
 
 ## 5. 품질 확인 방법
 
